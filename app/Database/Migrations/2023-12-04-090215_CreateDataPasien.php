@@ -21,7 +21,6 @@ class CreateDataPasien extends Migration
             ],
             'umur'    => [
                 'type'           => 'INT',
-                'unsigned'       => true,
             ],
             'alamat'  => [
                 'type'           => 'VARCHAR',
