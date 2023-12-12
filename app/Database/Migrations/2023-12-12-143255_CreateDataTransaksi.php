@@ -25,9 +25,18 @@ class CreateDataTransaksi extends Migration
             'total_biaya'  => [
                 'type'           => 'INTEGER',
             ], 
+            'status'  => [
+                'type'           => 'BOOLEAN',
+            ],            
+            'id_kunjungan'  => [
+                'type'           => 'INT',
+                'constraint'     => 5,
+                'unsigned'       => true,
+            ]            
         ]);
 
         $this->forge->addPrimaryKey('id');
+        $this->forge->addForeignKey('id_kunjungan', 'kunjungan', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('data_transaksi', true);
     }
 

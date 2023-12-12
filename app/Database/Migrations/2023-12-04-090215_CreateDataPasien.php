@@ -19,8 +19,8 @@ class CreateDataPasien extends Migration
                 'type'           => 'VARCHAR',
                 'constraint'     => '255',
             ],
-            'umur'    => [
-                'type'           => 'INT',
+            'tanggal_lahir'    => [
+                'type'           => 'DATE',
             ],
             'alamat'  => [
                 'type'           => 'VARCHAR',
