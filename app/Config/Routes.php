@@ -7,8 +7,14 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 
-$routes->get('/api/transaksi', 'DataTransaksiController::getDataTransaksi');
-$routes->get('/api/transaksi/(:segment)', 'DataTransaksiController::getDataTransaksiById/$1');
-$routes->post('/api/transaksi', 'DataTransaksiController::createDataTransaksi');
-$routes->put('/api/transaksi/(:segment)', 'DataTransaksiController::updateDataTransaksi/$1');
-$routes->delete('/api/transaksi/(:segment)', 'DataTransaksiController::deleteDataTransaksi/$1');
+$routes->group('api', function ($routes) {
+    $routes->post('login', 'Login::index');
+    $routes->post('register', 'Register::index');
+    
+    $routes->get('transaksi', 'DataTransaksiController::getDataTransaksi');
+    $routes->get('transaksi/(:segment)', 'DataTransaksiController::getDataTransaksiById/$1');
+    $routes->post('transaksi', 'DataTransaksiController::createDataTransaksi');
+    $routes->put('transaksi/(:segment)', 'DataTransaksiController::updateDataTransaksi/$1');
+    $routes->delete('transaksi/(:segment)', 'DataTransaksiController::deleteDataTransaksi/$1');
+});
+
