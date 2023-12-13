@@ -42,6 +42,8 @@ class Login extends BaseController
 
         $token = JWT::encode($payload, $key, 'HS256');
 
+        $this->response->setCookie('token', $token, 3600);
+
         return $this->setResponseFormat('json')->respond([
             'message'   => 'Login successful',
             'token'     => $token

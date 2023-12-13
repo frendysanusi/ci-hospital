@@ -11,7 +11,7 @@ $routes->group('api', function ($routes) {
     $routes->post('login', 'Login::index');
     $routes->post('register', 'Register::index');
     
-    $routes->get('transaksi', 'DataTransaksiController::getDataTransaksi');
+    $routes->get('transaksi', 'DataTransaksiController::getDataTransaksi', ['filter' => 'authFilter']);
     $routes->get('transaksi/(:segment)', 'DataTransaksiController::getDataTransaksiById/$1');
     $routes->post('transaksi', 'DataTransaksiController::createDataTransaksi');
     $routes->put('transaksi/(:segment)', 'DataTransaksiController::updateDataTransaksi/$1');
