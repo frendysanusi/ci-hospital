@@ -23,9 +23,9 @@
             <div class="h-60 w-2 bg-[#005792] mx-16"><br/></div>
             <div class="items-center flex">
                 <div>
-                    <h1 class="font-bold p-4 text-[#005792]">Admin</h1>
-                    <p class="p-4">Nama: Vania Salsabilla</p>
-                    <p class="p-4">ID: 312</p>
+                    <h1 class="font-bold p-4 text-[#005792]">Role: Admin</h1>
+                    <p class="p-4">Nama: Admin A</p>
+                    <p class="p-4">ID: -</p>
                 </div>
             </div>
         </div>

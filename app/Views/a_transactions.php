@@ -19,14 +19,31 @@
             <table class="w-full text-center gap-y-12">
                 <thead class="text-[#005792] font-bold text-xl border-b-4 border-[#005792]">
                     <th class="py-4">ID</th>
-                    <th class="py-4">Name</th>
-                    <th class="py-4">Date of Birth</th>
-                    <th class="py-4">Address</th>
+                    <th class="py-4">Visit Price</th>
+                    <th class="py-4">Medicine Price</th>
+                    <th class="py-4">Total Price</th>
                     <th class="py-4">Visit Paid</th>
                     <th class="py-4">Fully Paid</th>
                 </thead>
                 <!-- <div class="bg-[#005792] h-2 w-full"><br/></div> -->
                 <tbody>
+                    <?php foreach ($transactions as $transaction): ?>
+                        <tr class="h-12">
+                            <td><?php echo isset(transaction['id']) ? transaction['id'] : null; ?></td>
+                            <td><?php echo isset(transaction['biaya_rs']) ? transaction['biaya_rs'] : null; ?></td>
+                            <td><?php echo isset(transaction['biaya_apotek']) ? transaction['biaya_apotek'] : null; ?></td>
+                            <td><?php echo isset(transaction['biaya_rs']) ? transaction['biaya_rs'] : null; ?> + <?php echo isset(transaction['biaya_apotek']) ? transaction['biaya_apotek'] : null; ?> </td>
+                            <<td class="py-4">
+                                <input type="checkbox" id="visit" name="visit" value="visit" class="appearance-npne w-4 h-4 bg-[#005792] rounded-md "
+                                checked=<?php echo isset(transaction['status_rs']) ? transaction['status_rs'] : null; ?> />
+                            </td>
+                            <td class="py-4">
+                                <input type="checkbox" id="full" name="full" value="full" class="appearance-npne w-4 h-4 bg-[#005792] rounded-md " 
+                                checked=<?php echo isset(transaction['status_apotek']) ? transaction['status_apotek'] : null; ?>
+                                />
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                     <tr class="">
                         <td class="py-4">01</td>
                         <td class="py-4">Rp 120000</td>

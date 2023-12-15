@@ -28,84 +28,24 @@
             </div>
             <table class="w-full text-center">
                 <thead class="text-[#005792] font-bold text-xl border-b-4 border-[#005792]">
-                    <th>Visit ID</th>
-                    <th>Visit Fee</th>
-                    <th>Prescription Fee</th>
-                    <th>Total Fee</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Date of Birth</th>
+                    <th>Address</th>
                     <th>Manage</th>
                 </thead>
                 <!-- <div class="bg-[#005792] h-2 w-full"><br/></div> -->
                 <tbody>
-                    <tr class="h-12">
-                        <td>01</td>
-                        <td>Vania Salsabila</td>
-                        <td>12/12/2004</td>
-                        <td>Jl. Cimahi</td>
-                        <td>
-                            <button>
-                                <img class="w-14 p-2" alt="edit" src="/img/edit.png" />
-                            </button>
-                            <button>
-                                <img class="w-14 p-2" alt="delete" src="/img/delete.png" />
-                            </button>
-                        </td>
-                    </tr>
-                    <tr class="h-12">
-                        <td>02</td>
-                        <td>Bapak Fadhil</td>
-                        <td>12/12/2004</td>
-                        <td>Jl. Lalala</td>
-                        <td>
-                            <button>
-                                <img class="w-14 p-2" alt="edit" src="/img/edit.png" />
-                            </button>
-                            <button>
-                                <img class="w-14 p-2" alt="delete" src="/img/delete.png" />
-                            </button>
-                        </td>
-                    </tr>
-                    <tr class="h-12">
-                        <td>03</td>
-                        <td>Vania Salsabila</td>
-                        <td>12/12/2004</td>
-                        <td>Jl. Bundang</td>
-                        <td>
-                            <button>
-                                <img class="w-14 p-2" alt="edit" src="/img/edit.png" />
-                            </button>
-                            <button>
-                                <img class="w-14 p-2" alt="delete" src="/img/delete.png" />
-                            </button>
-                        </td>
-                    </tr>
-                    <tr class="h-12">
-                        <td>04</td>
-                        <td>Frendy</td>
-                        <td>12/12/2004</td>
-                        <td>Jl. Bandung</td>
-                        <td>
-                            <button>
-                                <img class="w-14 p-2" alt="edit" src="/img/edit.png" />
-                            </button>
-                            <button>
-                                <img class="w-14 p-2" alt="delete" src="/img/delete.png" />
-                            </button>
-                        </td>
-                    </tr>
-                    <tr class="h-12">
-                        <td>05</td>
-                        <td>Nadira Arifandi</td>
-                        <td>12/12/2004</td>
-                        <td>Jl. Bandung</td>
-                        <td>
-                            <button>
-                                <img class="w-14 p-2" alt="edit" src="/img/edit.png" />
-                            </button>
-                            <button>
-                                <img class="w-14 p-2" alt="delete" src="/img/delete.png" />
-                            </button>
-                        </td>
-                    </tr>
+                    <?php foreach ($patients as $patient): ?>
+                        <tr class="h-12">
+                            <td><?php echo isset(patient['id']) ? patient['id'] : null; ?></td>
+                            <td><?php echo isset(patient['nama']) ? patient['nama'] : null; ?></td>
+                            <td><?php echo isset(patient['tanggal_lahir']) ? patient['tanggal_lahir'] : null; ?></td>
+                            <td><?php echo isset(patient['alamat']) ? patient['alamat'] : null; ?></td>
+                            <td>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
                 
