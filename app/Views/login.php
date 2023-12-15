@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hospital</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
                 <h1 class="text-black text-4xl  font-semibold pl-40 2mt-10">Hello, Welcome back!</h1>
                 <h1 class="text-[#005792] text-3xl font-bold  pl-72 mt-10">Login</h1>
             
-                <form action="" class="mt-5">
+                <form action="/doctor" class="mt-5">
                     <div>
                         <label for="" class="block bg-white w-auto"></label>
                             <span class="px-52 flex font-semibold mt-10 text-neutral-700 text-sm ">Username</span>
