@@ -4,19 +4,52 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\Kunjungan;
+use App\Models\Pasien;
+use App\Models\Dokter;
 
 class KunjunganController extends BaseController
 {
     protected $kunjungan;
+    protected $pasiens;
+    protected $dokters;
 
     function __construct() {
         $this->kunjungan = new Kunjungan();
+        $this->pasiens = new Pasien();
+        $this->dokters = new Dokter();
     }
 
     public function index()
     {
-        $data['visits'] = $this->getKunjungan(false);
-        return view('d_visits', $data);
+        $res = $this->getKunjungan(false);
+        $visits = [];
+
+        foreach ($res as $visit) {
+            $id_pasien = $visit['id_pasien'];
+
+            $pasien = $this->pasiens->find($id_pasien);
+            $visit['nama_pasien'] = $pasien['nama'];
+
+            $visits[] = $visit;
+        }
+
+        return view('d_visits', compact('visits'));
+    }
+
+    public function showNewVisits()
+    {
+        $pasien = $this->pasiens->find();
+        $dokter = $this->dokters->find();
+        
+        $client = \Config\Services::curlrequest();
+        $url = 'http://localhost:8080/api/obat';
+        $res = $client->request('GET', $url);
+        $body = $res->getBody();
+        $body = json_decode($body, true);
+    
+        $obat = $body['data'];
+
+        return view('d_visit_a', compact('pasien', 'dokter', 'obat'));
     }
 
     public function getKunjungan()
