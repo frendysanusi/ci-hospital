@@ -11,23 +11,26 @@ class DataTransaksiSeeder extends Seeder
         $data = [
             [
                 'tanggal'       => '2023-12-09 13:47:09',
-                'detail'        => 'Detail Transaksi 1',
-                'total_biaya'   => 50000,
-                'status'        => true,
+                'biaya_rs'      => 200000,
+                'biaya_apotek'  => 100000,
+                'status_rs'     => true,
+                'status_apotek' => true,
                 'id_kunjungan'  => 1
             ],
             [
                 'tanggal'       => '2023-12-09 16:20:10',
-                'detail'        => 'Detail Transaksi 2',
-                'total_biaya'   => 40500,
-                'status'        => true,
+                'biaya_rs'      => 235000,
+                'biaya_apotek'  => 150000,
+                'status_rs'     => true,
+                'status_apotek' => false,
                 'id_kunjungan'  => 2
             ],
             [
                 'tanggal'       => '2023-12-09 23:28:29',
-                'detail'        => 'Detail Transaksi 3',
-                'total_biaya'   => 20000,
-                'status'        => false,
+                'biaya_rs'      => 100000,
+                'biaya_apotek'  => 70000,
+                'status_rs'     => false,
+                'status_apotek' => false,
                 'id_kunjungan'  => 3
             ],
         ];

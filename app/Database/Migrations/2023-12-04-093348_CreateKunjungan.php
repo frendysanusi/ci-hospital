@@ -28,17 +28,16 @@ class CreateKunjungan extends Migration
                 'constraint'     => 5,
                 'unsigned'       => true,
             ],
+            'keluhan'    => [
+                'type'           => 'VARCHAR',
+                'constraint'     => '255',
+            ],
             'diagnosa'    => [
                 'type'           => 'VARCHAR',
                 'constraint'     => '255',
             ],
-            'kesimpulan'    => [
-                'type'           => 'VARCHAR',
-                'constraint'     => '255',
-            ],
             'preskripsi'    => [
-                'type'           => 'VARCHAR',
-                'constraint'     => '255',
+                'type'           => 'JSON',
             ],
         ]);
 

@@ -24,11 +24,17 @@ $routes->get('/admin/transactions', 'AdminController::transactions');
 $routes->group('api', function ($routes) {
     $routes->post('login', 'Login::index');
     $routes->post('register', 'Register::index');
+
+    $routes->get('recapTransaksi', 'DataTransaksiController::recapTransaksi');
     
-    $routes->get('transaksi', 'DataTransaksiController::getDataTransaksi', ['filter' => 'authFilter']);
-    $routes->get('transaksi/(:segment)', 'DataTransaksiController::getDataTransaksiById/$1');
-    $routes->post('transaksi', 'DataTransaksiController::createDataTransaksi');
-    $routes->put('transaksi/(:segment)', 'DataTransaksiController::updateDataTransaksi/$1');
-    $routes->delete('transaksi/(:segment)', 'DataTransaksiController::deleteDataTransaksi/$1');
+    $routes->group('transaksi', function ($routes) {
+        $filter = ['filter' => 'authFilter'];
+
+        $routes->get('', 'DataTransaksiController::getDataTransaksi', $filter);
+        $routes->get('(:segment)', 'DataTransaksiController::getDataTransaksiById/$1', $filter);
+        $routes->post('', 'DataTransaksiController::createDataTransaksi', $filter);
+        $routes->put('(:segment)', 'DataTransaksiController::updateDataTransaksi/$1', $filter);
+        $routes->delete('(:segment)', 'DataTransaksiController::deleteDataTransaksi/$1', $filter);
+    });
 });
 
