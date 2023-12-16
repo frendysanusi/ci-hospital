@@ -33,15 +33,16 @@
                             <td><?php echo isset($transaction['biaya_rs']) ? $transaction['biaya_rs'] : null; ?></td>
                             <td><?php echo isset($transaction['biaya_apotek']) ? $transaction['biaya_apotek'] : null; ?></td>
                             <td><?php echo isset($transaction['biaya_rs']) && isset($transaction['biaya_apotek']) ? $transaction['biaya_rs'] + $transaction['biaya_apotek'] : null; ?></td>
-                            <td class="py-4">
-                                <input type="checkbox" id="visit" name="visit" value="visit" class="appearance-npne w-4 h-4 bg-[#005792] rounded-md "
-                                checked=<?php echo isset($transaction['status_rs']) ? $transaction['status_rs'] : false; ?> />
-                            </td>
-                            <td class="py-4">
-                                <input type="checkbox" id="full" name="full" value="full" class="appearance-npne w-4 h-4 bg-[#005792] rounded-md " 
-                                checked=<?php echo isset($transaction['status_apotek']) ? $transaction['status_apotek'] : false; ?>
-                                />
-                            </td>
+                            <form id="<?php echo isset($transaction['id']) ? $transaction['id'] : null; ?>">
+                                <td class="py-4">
+                                    <input type="checkbox" id="visit" name="visit" value="visit" class="appearance-npne w-4 h-4 bg-[#005792] rounded-md "
+                                    <?php echo isset ($transaction['status_rs']) ? ($transaction['status_rs'] ? 'checked' : '' ) : ''; ?> />
+                                </td>
+                                <td class="py-4">
+                                    <input type="checkbox" id="full" name="full" value="full" class="appearance-npne w-4 h-4 bg-[#005792] rounded-md " 
+                                    <?php echo isset ($transaction['status_apotek']) ? ($transaction['status_apotek'] ? 'checked' : '' ) : ''; ?> />
+                                </td>
+                            </form>
                         </tr>
                     <?php endforeach; ?>                    
                 </tbody>
