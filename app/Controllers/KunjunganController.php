@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\Kunjungan;
 use App\Models\Pasien;
 use App\Models\Dokter;
+use DateTime;
 
 class KunjunganController extends BaseController
 {
@@ -71,6 +72,26 @@ class KunjunganController extends BaseController
         }
         else {
             return $data;
+        }
+    }
+
+    public function updateKunjungan($id) {
+        $body = (array) $this->request->getJSON();
+
+        try {
+            $data = $this->kunjungan->update($id, [
+                'tanggal'       => new DateTime($body['tanggal'] . ' ' . $body['waktu']),
+                'id_pasien'     => $body['id_pasien'],
+                'id_dokter'     => $body['id_dokter'],
+                'keluhan'       => $body['keluhan'],
+                'diagnosa'      => $body['diagnosa'],
+                'preskripsi'    => $body['preskripsi'],
+            ]);
+    
+            return redirect()->to('/doctor/visits');
+        }
+        catch (\Exception $e) {
+            return redirect()->to('/doctor/visitsForm');
         }
     }
 

@@ -30,7 +30,7 @@
                             <span class="px-52 flex font-semibold mt-2 text-neutral-700 text-sm ">Password</span>
                             <input type="password" name="password" placeholder="Enter your password" class=" ml-52 flex w-64 px-4 text-xs justify text-start placeholder-gray-500 my-2 bg-neutral-100 py-2 rounded-md  border-gray-400">
                     </div>
-                    <div class="mt-10 pl-72" href="<?php echo site_url('/d_home.php')?>">
+                    <div class="mt-10 pl-72">
                         <button class="bg-[#005792] hover:bg-[#005792] text-white text-md font-medium  py-1 px-8 rounded-lg ">Login</button>
                     </div>
                 </form>
