@@ -20,7 +20,7 @@
                         <a class="hover:text-blue-700" href="/admin/profile">Profile</a>            
                     </li>
                     <li>
-                        <button class="bg-[#4200FF] hover:bg-[#4004EC] text-white text-md font-semibold font-poppins py-1 px-8 rounded-lg ">Log Out</button>
+                        <button class="bg-[#005792] hover:bg-[#033f67] text-white text-md font-semibold font-poppins py-1 px-8 rounded-lg ">Log Out</button>
                     </li>
                 </ul>
                 <div>
