@@ -15,7 +15,8 @@ class KunjunganController extends BaseController
 
     public function index()
     {
-        //
+        $data['visits'] = $this->getKunjungan(false);
+        return view('d_visits', $data);
     }
 
     public function getKunjungan()

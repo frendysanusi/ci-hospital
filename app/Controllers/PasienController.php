@@ -13,6 +13,12 @@ class PasienController extends BaseController
         $this->pasien = new Pasien();
     }
 
+    public function index()
+    {
+        $data['patients'] = $this->getPasien(false);
+        return view('a_patients', $data);
+    }
+
     public function getPasien()
     {
         try {
