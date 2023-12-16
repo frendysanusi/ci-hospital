@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\User;
+use App\Models\Dokter;
 use CodeIgniter\API\ResponseTrait;
 
 class Register extends BaseController
@@ -21,7 +21,7 @@ class Register extends BaseController
         ];
 
         if ($this->validate($rules)) {
-            $user = new User();
+            $user = new Dokter();
             $data = [
                 'nama'          =>  $this->request->getVar('nama'),
                 'spesialisasi'  =>  $this->request->getVar('spesialisasi'),
