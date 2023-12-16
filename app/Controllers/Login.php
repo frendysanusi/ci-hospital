@@ -52,5 +52,12 @@ class Login extends BaseController
         } else{
             return redirect()->to('doctor')->withCookies('token', $token, 3600)->with('message', 'Login successful');
         }
+
+    }
+    
+    public function logout() {
+        $this->response->deleteCookie('token');
+        session()->setFlashdata('success', 'Logout successful');
+        return redirect()->to('/')->withCookies('token', null);
     }
 }
