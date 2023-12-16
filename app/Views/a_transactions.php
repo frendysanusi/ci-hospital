@@ -29,94 +29,21 @@
                 <tbody>
                     <?php foreach ($transactions as $transaction): ?>
                         <tr class="h-12">
-                            <td><?php echo isset(transaction['id']) ? transaction['id'] : null; ?></td>
-                            <td><?php echo isset(transaction['biaya_rs']) ? transaction['biaya_rs'] : null; ?></td>
-                            <td><?php echo isset(transaction['biaya_apotek']) ? transaction['biaya_apotek'] : null; ?></td>
-                            <td><?php echo isset(transaction['biaya_rs']) ? transaction['biaya_rs'] : null; ?> + <?php echo isset(transaction['biaya_apotek']) ? transaction['biaya_apotek'] : null; ?> </td>
-                            <<td class="py-4">
+                            <td><?php echo isset($transaction['id']) ? $transaction['id'] : null; ?></td>
+                            <td><?php echo isset($transaction['biaya_rs']) ? $transaction['biaya_rs'] : null; ?></td>
+                            <td><?php echo isset($transaction['biaya_apotek']) ? $transaction['biaya_apotek'] : null; ?></td>
+                            <td><?php echo isset($transaction['biaya_rs']) && isset($transaction['biaya_apotek']) ? $transaction['biaya_rs'] + $transaction['biaya_apotek'] : null; ?></td>
+                            <td class="py-4">
                                 <input type="checkbox" id="visit" name="visit" value="visit" class="appearance-npne w-4 h-4 bg-[#005792] rounded-md "
-                                checked=<?php echo isset(transaction['status_rs']) ? transaction['status_rs'] : null; ?> />
+                                checked=<?php echo isset($transaction['status_rs']) ? $transaction['status_rs'] : false; ?> />
                             </td>
                             <td class="py-4">
                                 <input type="checkbox" id="full" name="full" value="full" class="appearance-npne w-4 h-4 bg-[#005792] rounded-md " 
-                                checked=<?php echo isset(transaction['status_apotek']) ? transaction['status_apotek'] : null; ?>
+                                checked=<?php echo isset($transaction['status_apotek']) ? $transaction['status_apotek'] : false; ?>
                                 />
                             </td>
                         </tr>
-                    <?php endforeach; ?>
-                    <tr class="">
-                        <td class="py-4">01</td>
-                        <td class="py-4">Rp 120000</td>
-                        <td class="py-4">Rp 120000</td>
-                        <td class="py-4">Rp 240000</td>
-                        <td class="py-4">
-                            <input type="checkbox" id="visit" name="visit" value="visit" class="appearance-npne w-4 h-4 bg-[#005792] rounded-md " />
-                        </td>
-                        <td class="py-4">
-                            <input type="checkbox" id="full" name="full" value="full" class="appearance-npne w-4 h-4 bg-[#005792] rounded-md " />
-                        </td>
-                    </tr>
-                    <tr class="">
-                        <td class="py-4">01</td>
-                        <td class="py-4">Rp 120000</td>
-                        <td class="py-4">Rp 120000</td>
-                        <td class="py-4">Rp 240000</td>
-                        <td class="py-4">
-                            <input type="checkbox" id="visit" name="visit" value="visit" class="appearance-npne w-4 h-4 bg-[#005792] rounded-md " />
-                        </td>
-                        <td class="py-4">
-                            <input type="checkbox" id="full" name="full" value="full" class="appearance-npne w-4 h-4 bg-[#005792] rounded-md " />
-                        </td>
-                    </tr>
-                    <tr class="">
-                        <td class="py-4">01</td>
-                        <td class="py-4">Rp 120000</td>
-                        <td class="py-4">Rp 120000</td>
-                        <td class="py-4">Rp 240000</td>
-                        <td class="py-4">
-                            <input type="checkbox" id="visit" name="visit" value="visit" class="appearance-npne w-4 h-4 bg-[#005792] rounded-md " />
-                        </td>
-                        <td class="py-4">
-                            <input type="checkbox" id="full" name="full" value="full" class="appearance-npne w-4 h-4 bg-[#005792] rounded-md " />
-                        </td>
-                    </tr>
-                    <tr class="">
-                        <td class="py-4">01</td>
-                        <td class="py-4">Rp 120000</td>
-                        <td class="py-4">Rp 120000</td>
-                        <td class="py-4">Rp 240000</td>
-                        <td class="py-4">
-                            <input type="checkbox" id="visit" name="visit" value="visit" class="appearance-npne w-4 h-4 bg-[#005792] rounded-md " />
-                        </td>
-                        <td class="py-4">
-                            <input type="checkbox" id="full" name="full" value="full" class="appearance-npne w-4 h-4 bg-[#005792] rounded-md " />
-                        </td>
-                    </tr>
-                    <tr class="">
-                        <td class="py-4">01</td>
-                        <td class="py-4">Rp 120000</td>
-                        <td class="py-4">Rp 120000</td>
-                        <td class="py-4">Rp 240000</td>
-                        <td class="py-4">
-                            <input type="checkbox" id="visit" name="visit" value="visit" class="appearance-npne w-4 h-4 bg-[#005792] rounded-md " />
-                        </td>
-                        <td class="py-4">
-                            <input type="checkbox" id="full" name="full" value="full" class="appearance-npne w-4 h-4 bg-[#005792] rounded-md " />
-                        </td>
-                    </tr>
-                    <tr class="">
-                        <td class="py-4">01</td>
-                        <td class="py-4">Rp 120000</td>
-                        <td class="py-4">Rp 120000</td>
-                        <td class="py-4">Rp 240000</td>
-                        <td class="py-4">
-                            <input type="checkbox" id="visit" name="visit" value="visit" class="appearance-npne w-4 h-4 bg-[#005792] rounded-md " />
-                        </td>
-                        <td class="py-4">
-                            <input type="checkbox" id="full" name="full" value="full" class="appearance-npne w-4 h-4 bg-[#005792] rounded-md " />
-                        </td>
-                    </tr>
-                    
+                    <?php endforeach; ?>                    
                 </tbody>
             </table>
             <div class="text-center mt-8">

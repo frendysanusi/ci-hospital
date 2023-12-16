@@ -38,11 +38,17 @@
                 <tbody>
                     <?php foreach ($patients as $patient): ?>
                         <tr class="h-12">
-                            <td><?php echo isset(patient['id']) ? patient['id'] : null; ?></td>
-                            <td><?php echo isset(patient['nama']) ? patient['nama'] : null; ?></td>
-                            <td><?php echo isset(patient['tanggal_lahir']) ? patient['tanggal_lahir'] : null; ?></td>
-                            <td><?php echo isset(patient['alamat']) ? patient['alamat'] : null; ?></td>
+                            <td><?php echo isset($patient['id']) ? $patient['id'] : null; ?></td>
+                            <td><?php echo isset($patient['nama']) ? $patient['nama'] : null; ?></td>
+                            <td><?php echo isset($patient['tanggal_lahir']) ? $patient['tanggal_lahir'] : null; ?></td>
+                            <td><?php echo isset($patient['alamat']) ? $patient['alamat'] : null; ?></td>
                             <td>
+                                <button>
+                                    <img class="w-14 p-2" alt="edit" src="/img/edit.png" />
+                                </button>
+                                <button>
+                                    <img class="w-14 p-2" alt="delete" src="/img/delete.png" />
+                                </button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
