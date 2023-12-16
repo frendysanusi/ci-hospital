@@ -16,7 +16,8 @@ class DataTransaksiController extends BaseController
 
     public function index()
     {
-        // return view('dataTransaksi.index');
+        $data['transactions'] = $this->getDataTransaksi(false);
+        return view('a_transactions', $data);
     }
 
     public function getDataTransaksi($returnJSON = true)

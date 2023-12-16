@@ -13,6 +13,12 @@ class DokterController extends BaseController
         $this->dokter = new Dokter();
     }
 
+    public function index()
+    {
+        $data['profile'] = $this->getDokter(false);
+        return view('d_profile', $data);
+    }
+
     public function getDokter()
     {
         try {
