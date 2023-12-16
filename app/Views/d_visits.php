@@ -27,10 +27,10 @@
                 <div class="flex my-4 w-[98%] border-2 border-[#005792] rounded-lg m-auto bg-[#EDF9FC] p-4">
                     <img class="py-2 px-8" alt="icon" src="/img/visits.png"/>
                     <div class="ml-8">
-                        <h1 class="font-bold text-xl text-[#005792]">Visit #<?php echo isset(visit['id']) ? visit['id'] : null; ?></h1>
-                        <p><?php echo isset(visit['tanggal']) ? visit['tanggal'] : null; ?></p>
-                        <p>Patient <?php echo isset(visit['id_pasien']) ? visit['id_pasien'] : null; ?></p>
-                        <p><?php echo isset(pasien['nama']) ? pasien['nama'] : null; ?></p>
+                        <h1 class="font-bold text-xl text-[#005792]">Visit #<?php echo isset($visit['id']) ? $visit['id'] : null; ?></h1>
+                        <p><?php echo isset($visit['tanggal']) ? $visit['tanggal'] : null; ?></p>
+                        <p>Patient <?php echo isset($visit['id_pasien']) ? $visit['id_pasien'] : null; ?></p>
+                        <p><?php echo isset($pasien['nama']) ? $pasien['nama'] : null; ?></p>
                     </div>
                 </div>
             <?php endforeach; ?>
