@@ -7,16 +7,14 @@ use CodeIgniter\Router\RouteCollection;
  */
 $filter = ['filter' => 'authFilter'];
 
-
 $routes->get('/', 'Home::index');
 $routes->post('/', 'Login::index');
-;
 
 
 $routes->group('doctor', function ($routes) {
     $routes->get('visits', 'KunjunganController::index');
+    $routes->get('visitsForm', 'KunjunganController::showNewVisits');
     $routes->get('visits/(:id)', 'KunjunganController::index/$1');
-    $routes->post('visits/(:id)', 'KunjunganController::index/$1');
     $routes->get('profile', 'DokterController::index');
     $routes->get('', 'LandDokterController::index');
 });
