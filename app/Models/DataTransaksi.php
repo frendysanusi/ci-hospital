@@ -10,5 +10,5 @@ class DataTransaksi extends Model
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
-    protected $allowedFields    = ['tanggal', 'detail', 'total_biaya', 'status', 'id_kunjungan'];
+    protected $allowedFields    = ['tanggal', 'biaya_rs', 'biaya_apotek', 'status_rs', 'status_apotek', 'id_kunjungan'];
 }

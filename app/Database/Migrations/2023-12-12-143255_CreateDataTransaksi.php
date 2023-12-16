@@ -18,14 +18,16 @@ class CreateDataTransaksi extends Migration
             'tanggal'    => [
                 'type'           => 'DATETIME',
             ],
-            'detail'    => [
-                'type'           => 'VARCHAR',
-                'constraint'     => '255',
-            ],
-            'total_biaya'  => [
+            'biaya_rs'  => [
                 'type'           => 'INTEGER',
             ], 
-            'status'  => [
+            'biaya_apotek'  => [
+                'type'           => 'INTEGER',
+            ], 
+            'status_rs'  => [
+                'type'           => 'BOOLEAN',
+            ],            
+            'status_apotek'  => [
                 'type'           => 'BOOLEAN',
             ],            
             'id_kunjungan'  => [
