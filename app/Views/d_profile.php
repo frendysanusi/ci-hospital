@@ -24,8 +24,8 @@
             <div class="items-center flex">
                 <div>
                     <h1 class="font-bold p-4 text-[#005792]">Role: Dokter</h1>
-                    <p class="p-4">Nama: <?php echo isset(user['name']) ? user['name'] : null; ?></p>
-                    <p class="p-4">ID: <?php echo isset(user['id']) ? user['id'] : null; ?></p>
+                    <p class="p-4">Nama: <?php echo isset($user['name']) ? $user['name'] : null; ?></p>
+                    <p class="p-4">ID: <?php echo isset($user['id']) ? $user['id'] : null; ?></p>
                 </div>
             </div>
         </div>

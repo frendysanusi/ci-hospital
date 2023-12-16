@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+
 class AdminController extends BaseController
 {
     public function index(): string
@@ -11,6 +12,7 @@ class AdminController extends BaseController
 
     public function patients(): string
     {
+
         return view('a_patients');
     }
     public function patientsid(): string

@@ -5,20 +5,32 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
+$filter = ['filter' => 'authFilter'];
+
+
 $routes->get('/', 'Home::index');
 $routes->post('/', 'Login::index');
-$routes->get('/doctor/visits', 'DoctorController::visits');
-$routes->get('/doctor/visits/(:id)', 'DoctorController::visitsid');
-$routes->post('/doctor/visits/(:id)', 'DoctorController::visitsid');
-$routes->get('/doctor/profile', 'DoctorController::profile');
-$routes->get('/doctor', 'DoctorController::index');
-$routes->get('/admin', 'AdminController::index');
-$routes->get('/admin/profile', 'AdminController::profile');
-$routes->get('/admin/patients', 'AdminController::patients');
-$routes->get('/admin/patients/(:id)', 'AdminController::patientsid');
-$routes->post('/admin/patients/(:id)', 'AdminController::patientsid');
-$routes->get('/admin/transactions', 'AdminController::transactions');
-$routes->get('/admin/transactions', 'AdminController::transactions');
+;
+
+
+$routes->group('doctor', function ($routes) {
+    $routes->get('visits', 'KunjunganController::index');
+    $routes->get('visits/(:id)', 'KunjunganController::index/$1');
+    $routes->post('visits/(:id)', 'KunjunganController::index/$1');
+    $routes->get('profile', 'DokterController::index');
+    $routes->get('', 'LandDokterController::index');
+});
+
+$routes->group('admin', function ($routes) {
+    $routes->get('', 'LandAdminController::index');
+    $routes->get('profile', 'ProfilController::index');
+    $routes->get('patients', 'PasienController::index');
+    $routes->get('patients/(:id)', 'PasienController::index/$1');
+    $routes->post('patients/(:id)', 'PasienController::index/$1');
+    $routes->get('transactions', 'DataTransaksiController::index');
+    $routes->post('transactions', 'DataTransaksiController::index');
+});
+
 
 
 $routes->group('api', function ($routes) {
