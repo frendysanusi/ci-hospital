@@ -16,7 +16,8 @@ class DataTransaksiController extends BaseController
 
     public function index()
     {
-        // return view('dataTransaksi.index');
+        $data['transactions'] = $this->getDataTransaksi(false);
+        return view('a_transactions', $data);
     }
 
     public function getDataTransaksi($returnJSON = true)
@@ -151,15 +152,19 @@ class DataTransaksiController extends BaseController
         try {
             $res = $this->dataTransaksi->findAll();
 
+            $sumTransaksi = [];
             if (!empty($res)) {
                 foreach ($res as $transaksi) {
                     $dateObject = new DateTime($transaksi['tanggal']);
-                    $month = $dateObject->format('m');
+                    $month = intval($dateObject->format('m'));
+
+                    $sumTransaksi[$month] = ($sumTransaksi[$month] ?? 0) + $transaksi['biaya_apotek'];
                 }
             }
+
             return $this->response->setJSON([
                 'status' => 'success',
-                'data'   => $month
+                'data'   => $sumTransaksi
             ]);
         }
         catch (\Exception $e) {

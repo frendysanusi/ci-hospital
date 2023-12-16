@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-class Home extends BaseController
+class LandAdminController extends BaseController
 {
     public function index(): string
     {
-        return view('login');
+        return view('a_home');
     }
 }

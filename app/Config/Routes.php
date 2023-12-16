@@ -5,7 +5,33 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
+$filter = ['filter' => 'authFilter'];
+
+
 $routes->get('/', 'Home::index');
+$routes->post('/', 'Login::index');
+;
+
+
+$routes->group('doctor', function ($routes) {
+    $routes->get('visits', 'KunjunganController::index');
+    $routes->get('visits/(:id)', 'KunjunganController::index/$1');
+    $routes->post('visits/(:id)', 'KunjunganController::index/$1');
+    $routes->get('profile', 'DokterController::index');
+    $routes->get('', 'LandDokterController::index');
+});
+
+$routes->group('admin', function ($routes) {
+    $routes->get('', 'LandAdminController::index');
+    $routes->get('profile', 'ProfilController::index');
+    $routes->get('patients', 'PasienController::index');
+    $routes->get('patients/(:id)', 'PasienController::index/$1');
+    $routes->post('patients/(:id)', 'PasienController::index/$1');
+    $routes->get('transactions', 'DataTransaksiController::index');
+    $routes->post('transactions', 'DataTransaksiController::index');
+});
+
+
 
 $routes->group('api', function ($routes) {
     $routes->post('login', 'Login::index');

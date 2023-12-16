@@ -1,104 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pharmacy</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
 </head>
 
 <body class="font-['Poppins'] bg-[#F5F5F5] h-screen">
-    <header class="bg-[#F5F5F5]">
-        <nav class="flex justify-between items-center mr-44 bg-gradient-to-b from-[#D1F4FA] to-[#EDF9FC] w-full">
-            <div class="flex-none">
-                <Image alt="logo" src="/img/hospital_logo.png"  class="py-6 px-8 w-[90%]"/>
-            </div>
-            <div class="h-full flex-col font-poppins font-semibold md:static absolute  md:min-h-fit min-h-[60vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5 ">
-                <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw]">
-                    <li>
-                        <a class="hover:text-blue-700" href="#">Home</a>
-                    </li>
-                    <li>
-                        <a class="hover:text-blue-700" href="#">Visits</a>
-                        <div class ="bg-black" class="h-8 w-12"></div>                        
-                    </li>
-                    <li>
-                        <a class="hover:text-blue-700" href="#">Profile</a>            
-                    </li>
-                    <li>
-                        <button class="bg-[#005792] hover:bg-[#005792] text-white text-md font-semibold font-poppins py-1 px-8 rounded-lg ">Log Out</button>
-                    </li>
-                </ul>
-                <div>
-                </div>
-            </div>
-            
-        </nav>
-    </header>
+    <?php include('d_navbar.php') ?>
 
     <div>
         <h1 class="text-3xl p-12 font-bold text-center text-[#005792]">Visit #4</h1>
         <div class="w-[90%] border-2 border-[#005792] rounded-lg m-auto mb-12 p-8 bg-[#D1F4FA]">
-            <form action ="" class="">
+            <form action="" class="">
                 <div class="grid grid-cols-2">
                     <div class="my-2">
                         <label for="date" class="block bg-white w-auto"></label>
                         <span class=" flex font-semibold text-neutral-700 text-sm ">Date</span>
-                        <input type="date" placeholder="Enter your username" class="border-2 border-[#005792] px-4 flex w-[90%] text-xs text-start placeholder-gray-500 my-2 bg-neutral-100 py-2 rounded-md">
+                        <input type="date" placeholder="Enter your username"
+                            class="border-2 border-[#005792] px-4 flex w-[90%] text-xs text-start placeholder-gray-500 my-2 bg-neutral-100 py-2 rounded-md">
                     </div>
                     <div class="my-2">
                         <label for="time" class="block bg-white w-auto"></label>
                         <span class=" flex font-semibold text-neutral-700 text-sm ">Time</span>
-                        <input type="time" placeholder="Enter your username" class="border-2 border-[#005792] px-4 flex w-[90%] text-xs text-start placeholder-gray-500 my-2 bg-neutral-100 py-2 rounded-md">
+                        <input type="time" placeholder="Enter your username"
+                            class="border-2 border-[#005792] px-4 flex w-[90%] text-xs text-start placeholder-gray-500 my-2 bg-neutral-100 py-2 rounded-md">
                     </div>
                     <div class="my-2">
                         <label for="date" class="block bg-white w-auto"></label>
                         <span class=" flex font-semibold text-neutral-700 text-sm ">Patient ID</span>
-                        <select type="select" placeholder="Select ID..." class="border-2 border-[#005792] px-4 flex w-[90%] text-xs text-start placeholder-gray-500 my-2 bg-neutral-100 py-2 rounded-md">
+                        <select type="select" placeholder="Select ID..."
+                            class="border-2 border-[#005792] px-4 flex w-[90%] text-xs text-start placeholder-gray-500 my-2 bg-neutral-100 py-2 rounded-md">
                         </select>
                     </div>
                     <div class="my-2">
                         <label for="time" class="block bg-white w-auto"></label>
                         <span class=" flex font-semibold text-neutral-700 text-sm ">Doctor ID</span>
-                        <select type="select" placeholder="Select ID..." class="border-2 border-[#005792] px-4 flex w-[90%] text-xs text-start placeholder-gray-500 my-2 bg-neutral-100 py-2 rounded-md">
+                        <select type="select" placeholder="Select ID..."
+                            class="border-2 border-[#005792] px-4 flex w-[90%] text-xs text-start placeholder-gray-500 my-2 bg-neutral-100 py-2 rounded-md">
                         </select>
                     </div>
                     <div class="my-2">
                         <label for="date" class="block bg-white w-auto"></label>
                         <span class=" flex font-semibold text-neutral-700 text-sm ">Patient Name</span>
-                        <p class="border-2 border-[#005792] px-4 flex w-[90%] text-xs text-start my-2 bg-neutral-100 py-2 rounded-md">XXX
+                        <p
+                            class="border-2 border-[#005792] px-4 flex w-[90%] text-xs text-start my-2 bg-neutral-100 py-2 rounded-md">
+                            XXX
                         </p>
                     </div>
                     <div class="my-2">
                         <label for="time" class="block bg-white w-auto"></label>
                         <span class=" flex font-semibold text-neutral-700 text-sm ">Doctor Name</span>
-                        <p class="border-2 border-[#005792] px-4 flex w-[90%] text-xs text-start my-2 bg-neutral-100 py-2 rounded-md">XXX
+                        <p
+                            class="border-2 border-[#005792] px-4 flex w-[90%] text-xs text-start my-2 bg-neutral-100 py-2 rounded-md">
+                            XXX
                         </p>
                     </div>
                 </div>
                 <div class="my-4">
                     <label for="date" class="block bg-white w-auto"></label>
                     <span class=" flex font-semibold text-neutral-700 text-sm ">Complaint</span>
-                    <p class="border-2 border-[#005792] px-4 flex w-[95%] text-xs text-start my-2 bg-neutral-100 py-2 rounded-md">XXX
+                    <input type="text" placeholder="Explain the complaints"
+                        class="border-2 border-[#005792] px-4 flex w-[95%] text-xs text-start my-2 bg-neutral-100 py-2 rounded-md">
                     </p>
                 </div>
                 <div class="my-4">
                     <label for="time" class="block bg-white w-auto"></label>
                     <span class=" flex font-semibold text-neutral-700 text-sm ">Diagnosis</span>
-                    <p class="border-2 border-[#005792] px-4 flex w-[95%] text-xs text-start my-2 bg-neutral-100 py-2 rounded-md">XXX
+                    <input type="text" placeholder="Explain the diagnosis"
+                        class="border-2 border-[#005792] px-4 flex w-[95%] text-xs text-start my-2 bg-neutral-100 py-2 rounded-md">
                     </p>
                 </div>
                 <div class="my-4">
                     <label for="time" class="block bg-white w-auto"></label>
                     <span class=" flex font-semibold text-neutral-700 text-sm ">Prescription</span>
-                    <select type="select" placeholder="Select ID..." class="border-2 border-[#005792] px-4 flex w-[95%] text-xs text-start placeholder-gray-500 my-2 bg-neutral-100 py-2 rounded-md">
-                    </select>
+
+                    <button onClick={} id="dropdownHelperButton" data-dropdown-toggle="dropdownHelper"
+                        class=" bg-neutral-100 w-[95%] border-2 border-[#005792] hover:bg-[#003772] focus:ring-4  focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
+                        type="button">Prescription <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 4 4 4-4" />
+                        </svg>
+                    </button>
+
+                    <div id="dropdownHelper"
+                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-60 dark:bg-gray-700 dark:divide-gray-600">
+                        <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200"
+                            aria-labelledby="dropdownHelperButton">
+                            <li>
+                                <div class="flex p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                    <div class="flex items-center h-5">
+                                        <input id="helper-checkbox-1" aria-describedby="helper-checkbox-text-1"
+                                            type="checkbox" value=""
+                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-[#005792] ">
+                                    </div>
+                                    <div class="ms-2 text-sm">
+                                        <label for="helper-checkbox-1"
+                                            class="font-medium text-gray-900 dark:text-gray-300">
+                                            <div>Enable notifications</div>
+                                            <p id="helper-checkbox-text-1"
+                                                class="text-xs font-normal text-gray-500 dark:text-gray-300">Some
+                                                helpful instruction goes over here.</p>
+                                        </label>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="flex p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                    <div class="flex items-center h-5">
+                                        <input id="helper-checkbox-2" aria-describedby="helper-checkbox-text-2"
+                                            type="checkbox" value=""
+                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                    </div>
+                                    <div class="ms-2 text-sm">
+                                        <label for="helper-checkbox-2"
+                                            class="font-medium text-gray-900 dark:text-gray-300">
+                                            <div>Enable 2FA auth</div>
+                                            <p id="helper-checkbox-text-2"
+                                                class="text-xs font-normal text-gray-500 dark:text-gray-300">Some
+                                                helpful instruction goes over here.</p>
+                                        </label>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="flex p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                    <div class="flex items-center h-5">
+                                        <input id="helper-checkbox-3" aria-describedby="helper-checkbox-text-3"
+                                            type="checkbox" value=""
+                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                    </div>
+                                    <div class="ms-2 text-sm">
+                                        <label for="helper-checkbox-3"
+                                            class="font-medium text-gray-900 dark:text-gray-300">
+                                            <div>Subscribe newsletter</div>
+                                            <p id="helper-checkbox-text-3"
+                                                class="text-xs font-normal text-gray-500 dark:text-gray-300">Some
+                                                helpful instruction goes over here.</p>
+                                        </label>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
                 <div class="text-center mt-8">
-                    <button class="flex m-auto items-center bg-[#005792] py-2 px-12 rounded-lg font-bold text-white text-center w-fit">Save</button>
+                    <button
+                        class="flex m-auto items-center bg-[#005792] hover:bg-[#003772] py-2 px-12 rounded-lg font-bold text-white text-center w-fit">Save</button>
                 </div>
             </form>
 
@@ -109,48 +164,12 @@
                 </div>
             </div>
             <div class="flex my-4 w-[98%] border-2 border-[#005792] rounded-lg m-auto bg-[#EDF9FC] p-4"> -->
-                
+
         </div>
     </div>
 
 
-    <div class="FOOTER bg-[#005792] text-white rounded-t-lg border-12 p-8 pb-0">
-        <div class="">
-            <h1 class="text-3xl font-bold text-center">We Care About You</h1>
-            <h2 class="text-xl text-center p-2">Manage All Your Hospital Needs!</h2>
-            <div class="flex text-sm">
-                <div class="block p-8">
-                    <div class="h-8 w-2"><br/></div>
-                    <h1 class="font-bold text-md">Contact Us</h1>
-                    <p>ITB Ganesa, Labtek V</p>
-                    <p>Jl. Ganesa No. 10, Kecamatan Coblong,<br/> Kota Bandung, 40132</p>
-                </div>
-                <div class="p-8 pt-12">
-                    <ul class="gap-4">
-                        <li class="flex py-1 gap-2">
-                            <img alt="ig" src="/img/contacts/instagram.png"/>
-                            <p>@tst.hospital</p>
-                        </li>
-                        <li class="flex py-1 gap-2">
-                            <img alt="wa" src="/img/contacts/whatsapp.png"/>
-                            <p>+62 111 1111 1111</p>
-                        </li>
-                        <li class="flex py-1 gap-2">
-                            <img alt="email" src="/img/contacts/email.png"/>
-                            <p>tst.hospital@gmail.com</p>
-                        </li>
-                        <li class="flex py-1 gap-2">
-                            <img alt="website" src="/img/contacts/website.png"/>
-                            <p>tst.hospital.id</p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="w-full h-48 pt-40 align-bottom">
-                    <p class="text-right align-text-bottom">© 2023 TST Hospital. All rights reserved.</p>
-                </div>
-            </div>
-        </div>
-        
-    </div>
+    <?php include('footer.php') ?>
 </body>
+
 </html>
