@@ -92,17 +92,13 @@ class DataTransaksiController extends BaseController
         }
     }
 
-    public function updateDataTransaksi($id, $returnJSON = true) {
+    public function update($id, $returnJSON = true) {
         $body = (array) $this->request->getJSON();
 
         try {
             $data = $this->dataTransaksi->update($id, [
-                'tanggal'       => $body['tanggal'],
-                'biaya_rs'      => $body['biaya_rs'],
-                'biaya_apotek'  => $body['biaya_apotek'],
                 'status_rs'     => $body['status_rs'],
                 'status_apotek' => $body['status_apotek'],
-                'id_kunjungan'  => $body['id_kunjungan']
             ]);
     
             if ($returnJSON) {
