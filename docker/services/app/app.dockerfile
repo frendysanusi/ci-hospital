@@ -15,8 +15,6 @@ RUN apt-get update && apt-get install -y \
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions
-
 # Graphics Draw
 RUN apt-get update && apt-get install -y \
     libfreetype6-dev \

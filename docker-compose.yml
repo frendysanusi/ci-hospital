@@ -32,8 +32,10 @@ services:
     volumes:
       - ./docker/volumes/mysql:/var/lib/mysql
     environment:
-      MYSQL_DATABASE: $${database.default.database}
-      MYSQL_ROOT_PASSWORD: $${database.default.password}
+      MYSQL_DATABASE: hospital
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
+      # MYSQL_DATABASE: $${database.default.database}
+      # MYSQL_ROOT_PASSWORD: $${database.default.password}
     ports:
       - "3307:3306"
     networks:
