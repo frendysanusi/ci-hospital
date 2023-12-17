@@ -75,7 +75,7 @@ class KunjunganController extends BaseController
         }
     }
 
-    public function updateKunjungan($id) {
+    public function update($id) {
         $body = (array) $this->request->getJSON();
 
         try {
