@@ -26,29 +26,83 @@
                 </thead>
                 <!-- <div class="bg-[#005792] h-2 w-full"><br/></div> -->
                 <tbody>
-                    <?php foreach ($patients as $patient): ?>
-                        <tr class="h-12">
-                            <td><?php echo isset($patient['id']) ? $patient['id'] : null; ?></td>
-                            <td><?php echo isset($patient['nama']) ? $patient['nama'] : null; ?></td>
-                            <td><?php echo isset($patient['tanggal_lahir']) ? $patient['tanggal_lahir'] : null; ?></td>
-                            <td><?php echo isset($patient['alamat']) ? $patient['alamat'] : null; ?></td>
-                            <td>
-                                <button>
-                                    <img class="w-14 p-2" alt="edit" src="/img/edit.png" />
-                                </button>
-                                <button>
-                                    <img class="w-14 p-2" alt="delete" src="/img/delete.png" />
-                                </button>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-                
-        </div>
-    </div>
+                    <?php 
+                        foreach ($patients as $patient):
+                            echo '
+                            <tr class="h-12">
+                                <td>' . (isset($patient['id']) ? $patient['id'] : null) . '</td>
+                                <td>' . (isset($patient['nama']) ? $patient['nama'] : null) . '</td>
+                                <td>' . (isset($patient['tanggal_lahir']) ? $patient['tanggal_lahir'] : null) . '</td>
+                                <td>' . (isset($patient['alamat']) ? $patient['alamat'] : null) . '</td>
+                                <td>
+                                    <button id="editButton' . ( isset($patient["id"]) ? ($patient["id"])  : null ) . '" data-id="' . ( isset($patient["id"]) ? ($patient["id"])  : null ) . '">
+                                        <img class="w-14 p-2" alt="edit" src="/img/edit.png" />
+                                    </button>
+                                    <button id="deleteButton' . ( isset($patient["id"]) ? ($patient["id"])  : null ) . '" data-id="'. ( isset($patient["id"]) ? ($patient["id"])  : null ) . '">
+                                        <img class="w-14 p-2" alt="delete" src="/img/delete.png" />
+                                    </button>
+                                </td>
+                            </tr>
+                        ';
+                        endforeach;
+                        echo '
+                                        </tbody>
+                                    </table>
+                                    
+                                </div>
+                            </div>';
 
+                        include('editpasien.php');
+                        include('popupdelete.php');
+                    
+                        include('footer.php');
 
-    <?php include('footer.php') ?>
-</body>
-</html>
+                        echo '
+                            </body>
+
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function() {
+                                    var editModal = document.getElementById("editModal");
+                            ';
+
+                        foreach ($patients as $patient):
+                            $patientId = isset($patient["id"]) ? $patient["id"] : null;
+                            $nama_pasien = isset($patient["nama"]) ? $patient["nama"] : null;
+                            $tanggal_lahir = isset($patient["tanggal_lahir"]) ? $patient["tanggal_lahir"] : null;
+                            $alamat = isset($patient["alamat"]) ? $patient["alamat"] : null;
+                            echo '
+                                document.getElementById("editButton' . $patientId . '").addEventListener("click", function (event) {
+                                    event.preventDefault();
+                                    editModal.removeAttribute("style");
+                                    editModal.setAttribute("data-id", "' . $patientId . '");
+                                    editModal.setAttribute("nama-pasien", "' . $nama_pasien . '");
+                                    editModal.setAttribute("tanggal-lahir", "' . $tanggal_lahir . '");
+                                    editModal.setAttribute("alamat", "' . $alamat . '");
+
+                                    document.getElementsByName("namapasien")[0].value = editModal.getAttribute("nama-pasien");
+                                    document.getElementsByName("tanggallahir")[0].value = editModal.getAttribute("tanggal-lahir");
+                                    document.getElementsByName("alamat")[0].value = editModal.getAttribute("alamat");
+                                });
+                            ';
+                        endforeach;
+
+                        echo '
+                                var deleteConfirmation = document.getElementById("deleteConfirmation");
+                            ';
+
+                        foreach ($patients as $patient):
+                            $patientId = isset($patient["id"]) ? $patient["id"] : null;
+                            echo '
+                                document.getElementById("deleteButton' . $patientId . '").addEventListener("click", function (event) {
+                                    event.preventDefault();
+                                    deleteConfirmation.removeAttribute("style");
+                                    document.getElementById("delete").setAttribute("data-id", "' . $patientId . '");
+                                });
+                            ';
+                        endforeach;
+
+                        echo '
+                            });
+                            </script>
+                        ';
+                    ?>
