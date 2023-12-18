@@ -9,12 +9,12 @@
         <h1 class="text-3xl pt-12  font-bold text-center text-[#005792]">Manage Patients</h1>
         <div class="w-[90%] m-auto mb-12 p-8 pt-0">
             <div class="justify-end flex mb-12">
-                <a href="/admin/patients/edit" class="m-4 flex border-2 align-middle border-[#005792] text-[#005792] px-8 py-2 rounded-lg align-items-center">
+                <button id="addButton" class="m-4 flex border-2 align-middle border-[#005792] text-[#005792] px-8 py-2 rounded-lg align-items-center">
                     <img class="px-2 align-middle w-12" alt="addpatients" src="/img/add_patient.png" />
                     <div class="flex items-center">
                     <p class="font-bold align-middle">Add Patient</p>
                     </div>
-                </a>
+                </button>
             </div>
             <table class="w-full text-center">
                 <thead class="text-[#005792] font-bold text-xl border-b-4 border-[#005792]">
@@ -63,6 +63,12 @@
                             <script>
                                 document.addEventListener("DOMContentLoaded", function() {
                                     var editModal = document.getElementById("editModal");
+
+                                    document.getElementById("addButton").addEventListener("click", function (event) {
+                                        event.preventDefault();
+                                        editModal.removeAttribute("style");
+                                        editModal.setAttribute("httpmethod", "POST");
+                                    });
                             ';
 
                         foreach ($patients as $patient):
@@ -75,6 +81,8 @@
                                     event.preventDefault();
                                     editModal.removeAttribute("style");
                                     editModal.setAttribute("data-id", "' . $patientId . '");
+                                    editModal.setAttribute("httpmethod", "PUT");
+
                                     editModal.setAttribute("nama-pasien", "' . $nama_pasien . '");
                                     editModal.setAttribute("tanggal-lahir", "' . $tanggal_lahir . '");
                                     editModal.setAttribute("alamat", "' . $alamat . '");

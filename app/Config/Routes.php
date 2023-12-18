@@ -26,7 +26,6 @@ $routes->group('admin', function ($routes) {
     $routes->get('', 'LandAdminController::index');
     $routes->get('profile', 'ProfilController::index');
     $routes->get('patients', 'PasienController::index');
-    $routes->get('patients/edit', 'PasienController::addForm');
     $routes->post('patients/edit', 'PasienController::createPasien');
     $routes->get('patients/edit/(:id)', 'PasienController::editForm/$1', $filter);
     $routes->post('patients/delete/(:id)', 'PasienController::deleteForm/$1', $filter);
@@ -61,6 +60,7 @@ $routes->group('api', function ($routes) {
     $routes->group('pasien', function ($routes) {
         $filter = ['filter' => 'authFilter'];
 
+        $routes->post('', 'PasienController::create', $filter);
         $routes->put('(:segment)', 'PasienController::update/$1', $filter);
         $routes->delete('(:segment)', 'PasienController::delete/$1', $filter);
     });
