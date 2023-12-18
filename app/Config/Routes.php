@@ -55,5 +55,12 @@ $routes->group('api', function ($routes) {
         $routes->put('(:segment)', 'DataTransaksiController::update/$1', $filter);
         $routes->delete('(:segment)', 'DataTransaksiController::deleteDataTransaksi/$1', $filter);
     });
+
+    $routes->group('pasien', function ($routes) {
+        $filter = ['filter' => 'authFilter'];
+
+        $routes->put('(:segment)', 'PasienController::update/$1', $filter);
+        $routes->delete('(:segment)', 'PasienController::delete/$1', $filter);
+    });
 });
 
