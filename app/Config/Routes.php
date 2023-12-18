@@ -21,13 +21,20 @@ $routes->group('doctor', function ($routes) {
 });
 
 $routes->group('admin', function ($routes) {
+    $filter = ['filter' => 'authFilter'];
     $routes->get('', 'LandAdminController::index');
     $routes->get('profile', 'ProfilController::index');
     $routes->get('patients', 'PasienController::index');
-    $routes->get('patients/(:id)', 'PasienController::index/$1');
-    $routes->post('patients/(:id)', 'PasienController::index/$1');
+    $routes->get('patients/edit', 'PasienController::addForm');
+    $routes->post('patients/edit', 'PasienController::createPasien');
+    $routes->get('patients/edit/(:id)', 'PasienController::editForm/$1', $filter);
+    $routes->post('patients/delete/(:id)', 'PasienController::deleteForm/$1', $filter);
     $routes->get('transactions', 'DataTransaksiController::index');
     $routes->post('transactions', 'DataTransaksiController::index');
+
+    $routes->get('(patients/(:segment))', 'ObatController::getPasienById/$1');
+    $routes->put('(patients/(:segment))', 'ObatController::updatePasien/$1', $filter);
+
 });
 
 

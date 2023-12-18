@@ -8,17 +8,20 @@
                     <img src="/img/close.png" alt="/img/close.png" class="mr-4 h-6 w-6 mt-3">
                 </button>
             </div>
-            <h1 class="text-[#005792] text-lg font-bold font-poppins text-center">Add Patient</h1>
+            <h1 class="text-[#005792] text-lg font-bold font-poppins text-center">Patient <?php echo isset($patient) ? "#" + $patient['nama'] : "NEW"; ?></h1>
 
             <form action="" method="post">
                 <div class="flex">
                     <div>
-                        <label for="name" class=""></label>
-                            <input type="text" name="namapasien" placeholder="Nama Pasien" class="mt-6 ml-8 border-2 border-gray-400 flex w-64 px-4 text-xs justify text-start placeholder-gray-500 my-4 bg-neutral-100 py-2 rounded-xl font-poppins">
-                        <label for="price" class=""></label>
-                            <input type="date" name="tanggallahir" placeholder="Tanggal Lahir" class="-mt-1 ml-8 border-2 border-gray-400 flex w-64 px-4 text-xs justify text-start placeholder-gray-500 my-4 bg-neutral-100 py-2 rounded-xl font-poppins">
-                        <label for="stok" class=""></label>
-                            <input type="text" name="jumlah_stok" placeholder="Alamat" class="-mt-1 ml-8 border-2 border-gray-400 flex w-64 px-4 text-xs justify text-start placeholder-gray-500 my-4 bg-neutral-100 py-2 rounded-xl font-poppins">
+                        <label for="nama" class=""></label>
+                            <input type="text" name="nama" placeholder="Nama Pasien" class="mt-6 ml-8 border-2 border-gray-400 flex w-64 px-4 text-xs justify text-start placeholder-gray-500 my-4 bg-neutral-100 py-2 rounded-xl font-poppins"
+                            value=<?php echo isset($patient) ? $patient['nama'] : null; ?>>
+                        <label for="tanggal_lahir" class=""></label>
+                            <input type="date" name="tanggal_lahir" placeholder="Tanggal Lahir" class="-mt-1 ml-8 border-2 border-gray-400 flex w-64 px-4 text-xs justify text-start placeholder-gray-500 my-4 bg-neutral-100 py-2 rounded-xl font-poppins"
+                            value=<?php echo isset($patient) ? $patient['tanggal_lahir'] : null; ?>>
+                        <label for="alamat" class=""></label>
+                            <input type="text" name="alamat" placeholder="Alamat" class="-mt-1 ml-8 border-2 border-gray-400 flex w-64 px-4 text-xs justify text-start placeholder-gray-500 my-4 bg-neutral-100 py-2 rounded-xl font-poppins"
+                            value=<?php echo isset($patient) ? $patient['alamat'] : null; ?>>
                     </div>
                 </div>
                 <div class="text-center">
