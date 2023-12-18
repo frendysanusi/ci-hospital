@@ -7,16 +7,15 @@ use CodeIgniter\Router\RouteCollection;
  */
 $filter = ['filter' => 'authFilter'];
 
-
 $routes->get('/', 'Home::index');
 $routes->post('/', 'Login::index');
-;
 
 
 $routes->group('doctor', function ($routes) {
     $routes->get('visits', 'KunjunganController::index');
+    $routes->get('visitsForm', 'KunjunganController::showNewVisits');
     $routes->get('visits/(:id)', 'KunjunganController::index/$1');
-    $routes->post('visits/(:id)', 'KunjunganController::index/$1');
+    $routes->put('visits/(:id)', 'KunjunganController::update/$1');
     $routes->get('profile', 'DokterController::index');
     $routes->get('', 'LandDokterController::index');
 });
@@ -45,7 +44,7 @@ $routes->group('api', function ($routes) {
         $routes->get('', 'DataTransaksiController::getDataTransaksi', $filter);
         $routes->get('(:segment)', 'DataTransaksiController::getDataTransaksiById/$1', $filter);
         $routes->post('', 'DataTransaksiController::createDataTransaksi', $filter);
-        $routes->put('(:segment)', 'DataTransaksiController::updateDataTransaksi/$1', $filter);
+        $routes->put('(:segment)', 'DataTransaksiController::update/$1', $filter);
         $routes->delete('(:segment)', 'DataTransaksiController::deleteDataTransaksi/$1', $filter);
     });
 });
