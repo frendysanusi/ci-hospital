@@ -1,27 +1,33 @@
 <div align="center">
+    <img  alt="logo" src="/public/img/hospital_logo.png"/>
     <h1>Tugas Besar</h1>
     <h3>II3160 - Teknologi Sistem Terintegrasi</h3>
 </div>
 <br>
 
 <div align="center">
-    <img src="https://readme-typing-svg.herokuapp.com?font=Itim&size=48&pause=1000&color=20C20E&center=true&vCenter=true&random=false&width=1000&height=60&lines=Teknologi+Sistem+-+Terintegrasi;Sistem+Rumah+Sakit;Sistem+Apotek" alt="Typing SVG">
+    <img src="https://readme-typing-svg.herokuapp.com?font=Itim&size=48&pause=1000&color=005792&center=true&vCenter=true&random=false&width=1000&height=60&lines=Teknologi+Sistem+-+Terintegrasi;Sistem+Rumah+Sakit;Sistem+Apotek" alt="Typing SVG">
 </div>
 
 ## List of Contents
 
-1. [Description](#description)
-2. [Group's Members](#groups-members)
-3. [Tech Stack](#tech-stack)
-4. [How to Run](#how-to-run)
-5. [API Endpoints](#api-endpoints)
+1. [System Overview](#system-overview)
+2. [Core Domain](#core-domain)
+3. [Team Members](#team-members)
+4. [Tech Stack](#tech-stack)
+5. [How to Run](#how-to-run)
 6. [Deployment](#deployment)
+7. [Documentation](#documentation)
 
 ## System Overview
 
-Service ini menyediakan API yang digunakan sebagai backend untuk aplikasi [Intelligente Landwirtschaft - Frontend](https://github.com/rasyadanfz/intelligente-landwirtschaft-frontend). Service ini dibuat untuk mendukung proses bisnis penanaman dan pemeliharaan berdasarkan rancangan SoaML (Service-oriented architecture Modelling Language) smart farming.
+Sistem TST Hospital membantu rumah sakit dalam kegiatan-kegiatan pendaftaran pasien, pencatatan hasil kunjungan, pembuatan preskripsi obat yang secara langsung dikirim ke sistem apotek, dan sistem pencatatan pembayaran. Sistem ini dibuat untuk mempermudah segala kegiatan pencatatan dan pemesanan obat di rumah sakit.
 
-## Group's Members
+## Core Domain
+
+Sistem rumah sakit bertugas untuk melayani pembayaran untuk segala transaksi di rumah sakit dan apotek. Selanjutnya, sistem rumah sakit melakukan rekapitulasi masukan uang tiap bulannya untuk diberikan ke sistem apotek. Dengan memanfaatkan sistem ini, sistem apotek akan dipermudah karena tidak lagi perlu menyediakan sistem pembayaran tersendiri. 
+
+## Team Members
 
 <table>
     <tr align="center">
@@ -81,3 +87,9 @@ npx tailwindcss -i ./public/css/input.css -o ./public/css/styles.css --watch
 ```
 7. Service berjalan pada http://localhost:8081 pada browser Anda
 
+## Deployment
+
+## Documentation
+[https://docs.google.com/document/d/11VVUq3s6EbKkoQnYY_Sl7ymabZufGoWuneDM68WyuzY/edit](Documentation)
+
+*Development processes and interfaces are provided in the document.*
