@@ -120,4 +120,47 @@ class KunjunganController extends BaseController
             return null;
         }
     }
+
+    public function createVisit() {
+        $tanggal = $_POST['tanggal'] . ' ' . $_POST['waktu'];
+        $id_pasien = $_POST['id_pasien'];
+        $id_dokter = $_POST['id_dokter'];
+        $keluhan = $_POST['keluhan'];
+        $diagnosa = $_POST['diagnosa'];
+        $preskripsi = $_POST['preskripsi'];
+
+        $body = ['tanggal', 'id_pasien', 'id_dokter', 'keluhan', 'diagnosa', 'preskripsi'];
+
+        $validationData = [
+            // 'tanggal'  => 'required|Y-m-d H:i:s',
+            'id_pasien'  => 'required|integer',
+            'id_dokter'  => 'required|integer',
+            'keluhan'  => 'required',
+            'diagnosa'  => 'required',
+            'preskripsi'  => 'required|integer',
+        ];
+
+        if (!$this->validate($validationData, $body)) {
+            return $this->response->setStatusCode(400)->setJSON($this->validator->getErrors());
+        }
+
+        try {
+            $data = $this->kunjungan->insert([
+                'tanggal' => $tanggal,
+                'id_pasien' => $id_pasien,
+                'id_dokter' => $id_dokter,
+                'keluhan' => $keluhan,
+                'diagnosa' => $diagnosa,
+                'preskripsi' => $preskripsi,
+            ]);
+    
+            return redirect()->to('doctor/visits');
+        }
+        catch (\Exception $e) {
+            return $this->response->setStatusCode(500)->setJSON([
+                'status' => 'error',
+                'message' => 'An error occured'
+            ]);
+        }
+    }
 }
