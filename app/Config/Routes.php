@@ -14,6 +14,7 @@ $routes->post('/', 'Login::index');
 $routes->group('doctor', function ($routes) {
     $routes->get('visits', 'KunjunganController::index');
     $routes->get('visitsForm', 'KunjunganController::showNewVisits');
+    $routes->post('visitsForm', 'KunjunganController::createVisit');
     $routes->get('visits/(:id)', 'KunjunganController::index/$1');
     $routes->put('visits/(:id)', 'KunjunganController::update/$1');
     $routes->get('profile', 'DokterController::index');
