@@ -9,6 +9,7 @@ $filter = ['filter' => 'authFilter'];
 
 $routes->get('/', 'Home::index');
 $routes->post('/', 'Login::index');
+$routes->get('/logout', 'Login::logout');
 
 
 $routes->group('doctor', function ($routes) {
@@ -39,13 +40,11 @@ $routes->group('admin', function ($routes) {
 
 });
 
-
-
 $routes->group('api', function ($routes) {
     $routes->post('login', 'Login::index');
     $routes->post('register', 'Register::index');
 
-    $routes->get('recapTransaksi', 'DataTransaksiController::recapTransaksi');
+    $routes->get('recapTransaksi/(:segment)', 'DataTransaksiController::recapTransaksi/$1');
     
     $routes->group('transaksi', function ($routes) {
         $filter = ['filter' => 'authFilter'];
