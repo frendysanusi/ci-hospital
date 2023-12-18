@@ -13,7 +13,7 @@
                     <th class="py-4">Medicine Price</th>
                     <th class="py-4">Total Price</th>
                     <th class="py-4">Visit Paid</th>
-                    <th class="py-4">Fully Paid</th>
+                    <th class="py-4">Medicine Paid</th>
                 </thead>
                 <!-- <div class="bg-[#005792] h-2 w-full"><br/></div> -->
                 <tbody>

@@ -15,8 +15,6 @@ RUN apt-get update && apt-get install -y \
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions
-
 # Graphics Draw
 RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
@@ -32,6 +30,7 @@ RUN apt-get update && apt-get install -y libonig-dev && docker-php-ext-install m
 RUN docker-php-ext-install bcmath
 RUN docker-php-ext-install exif
 RUN docker-php-ext-install pdo_mysql
+RUN docker-php-ext-install mysqli
 
 # Install intl extension
 RUN apt-get install -y zlib1g-dev libicu-dev g++ \
