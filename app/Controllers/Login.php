@@ -48,9 +48,9 @@ class Login extends BaseController
         session()->setFlashdata('success', 'Login successful');
 
         if($username =='admin'){
-            return redirect()->to('admin')->withCookies('token', $token, 3600)->with('message', 'Login successful');
+            return redirect()->to('/admin')->withCookies('token', $token, 3600)->with('message', 'Login successful');
         } else{
-            return redirect()->to('doctor')->withCookies('token', $token, 3600)->with('message', 'Login successful');
+            return redirect()->to('/doctor')->withCookies('token', $token, 3600)->with('message', 'Login successful');
         }
 
     }
