@@ -17,7 +17,8 @@
 4. [Tech Stack](#tech-stack)
 5. [How to Run](#how-to-run)
 6. [Deployment](#deployment)
-7. [Documentation](#documentation)
+7. [Features](#features)
+8. [Documentation](#documentation)
 
 ## System Overview
 
@@ -85,9 +86,37 @@ php spark db:seed DataSeeder
 php spark serve --port 8081
 npx tailwindcss -i ./public/css/input.css -o ./public/css/styles.css --watch
 ```
-7. Service berjalan pada http://localhost:8081 pada browser Anda
+6. Service berjalan pada http://localhost:8081 pada browser Anda
+
+7. Gunakan informasi login berikut:
+```
+# Login sebagai admin
+username: admin
+password: password
+
+# Login sebagai dokter
+username: dokter_a
+password: password
+```
 
 ## Deployment
+
+## Features
+
+1. **Login** - melakukan validasi dan autorisasi pengguna. terdapat 2 role dalam sistem ini, yaitu dokter yang bertugas mengisi catatan kunjungan, dan admin yang bertugas mendaftarkan pasien, mengkonfirmasi pembayaran, dan mengirim informasi rekapitulasi masukan uang ke sistem apotek.
+
+2. **View Supplement Recommendations** - dokter dapat melihat rekomendasi suplemen tiap bulan yang diberikan sistem apotek untuk mendapatkan informasi kebutuhan vitamin para pasien dalam satu bulan terakhir.
+
+3. **Add Kunjungan** - dokter dapat menambahkan data kunjungan, dimana dokter dapat memilih pasien dan menambahkan data keluhan, diagnosa, dan preskripsi obat yang diberikan kepada pasien tersebut. Preskripsi obat dilakukan dengan menggunakan integrasi page stok obat dari sistem apotek untuk mempermudah pemesanan obat.
+
+4. **Profile** - dokter dan admin dapat melihat data diri, serta melakukan Log Out pada halaman profil.
+
+5. **Add/Edit/Delete Patients** - admin dapat melakukan manajemen data pasien untuk kebutuhan pendaftaran pasien.
+
+6. **Edit Transactions** - admin dapat mengkonfirmasi kegiatan perubahan data pasien.
+
+7. **Send Recapitulation** - admin dapat mengirimkan data rekapitulasi masukan uang untuk bulan tertentu ke sistem apotek untuk pertanggungjawaban keuangan antarsistem.
+   
 
 ## Documentation
 [https://docs.google.com/document/d/11VVUq3s6EbKkoQnYY_Sl7ymabZufGoWuneDM68WyuzY/edit](Documentation)
