@@ -9,6 +9,7 @@ $filter = ['filter' => 'authFilter'];
 
 $routes->get('/', 'Home::index');
 $routes->post('/', 'Login::index');
+$routes->get('/logout', 'Login::logout');
 
 
 $routes->group('doctor', function ($routes) {

@@ -22,25 +22,50 @@ class KunjunganController extends BaseController
 
     public function index()
     {
-        $res = $this->getKunjungan(false);
-        $visits = [];
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $tokenData = explode('.', $token);
+            if (count($tokenData) === 3) {
+                $payload = base64_decode($tokenData[1]);
+                $payloadData = json_decode($payload, true);
 
-        foreach ($res as $visit) {
-            $id_pasien = $visit['id_pasien'];
+                $username = $payloadData[0]['username'];
 
-            $pasien = $this->pasiens->find($id_pasien);
-            $visit['nama_pasien'] = $pasien['nama'];
-
-            $visits[] = $visit;
+                $dokter = $this->dokters->where('username', $username)->first();
+                $id = $dokter['id'];
+            }
         }
 
-        return view('d_visits', compact('visits'));
+        if ($id) {
+            $res = $this->getKunjungan();
+    
+            $kunjunganArray = [];
+            foreach ($res as $r) {
+                if ($r['id_dokter'] == $id) {
+                    $kunjunganArray[] = $r;
+                }
+            }
+    
+            $visits = [];
+    
+            foreach ($kunjunganArray as $visit) {
+                $id_pasien = $visit['id_pasien'];
+    
+                $pasien = $this->pasiens->find($id_pasien);
+                $visit['nama_pasien'] = $pasien['nama'];
+    
+                $visits[] = $visit;
+            }
+            return view('d_visits', compact('visits'));
+        }
     }
 
     public function showNewVisits()
     {
         $pasien = $this->pasiens->find();
         $dokter = $this->dokters->find();
+        $kunjungan = $this->getKunjungan();
+        $kunjunganLastId = end($kunjungan)['id'];
         
         $client = \Config\Services::curlrequest();
         $url = 'http://localhost:8080/api/obat';
@@ -50,7 +75,7 @@ class KunjunganController extends BaseController
     
         $obat = $body['data'];
 
-        return view('d_visit_a', compact('pasien', 'dokter', 'obat'));
+        return view('d_visit_a', compact('pasien', 'dokter', 'obat', 'kunjunganLastId'));
     }
 
     public function getKunjungan()
@@ -129,15 +154,21 @@ class KunjunganController extends BaseController
         $diagnosa = $_POST['diagnosa'];
         $preskripsi = $_POST['preskripsi'];
 
-        $body = ['tanggal', 'id_pasien', 'id_dokter', 'keluhan', 'diagnosa', 'preskripsi'];
+        $resArray = array_map(function($id_obat) {
+            return ['id_obat' => intval($id_obat)];
+        }, $preskripsi);
 
+        $preskripsi = json_encode($resArray);
+
+        $body = ['tanggal', 'id_pasien', 'id_dokter', 'keluhan', 'diagnosa', 'preskripsi'];
+        
         $validationData = [
             // 'tanggal'  => 'required|Y-m-d H:i:s',
             'id_pasien'  => 'required|integer',
             'id_dokter'  => 'required|integer',
             'keluhan'  => 'required',
             'diagnosa'  => 'required',
-            'preskripsi'  => 'required|integer',
+            'preskripsi'  => 'required',
         ];
 
         if (!$this->validate($validationData, $body)) {
