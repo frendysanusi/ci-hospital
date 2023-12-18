@@ -32,6 +32,8 @@ $routes->group('admin', function ($routes) {
     $routes->get('transactions', 'DataTransaksiController::index');
     $routes->post('transactions', 'DataTransaksiController::index');
 
+    $routes->get('recap', 'AdminController::recap');
+
     $routes->get('(patients/(:segment))', 'ObatController::getPasienById/$1');
     $routes->put('(patients/(:segment))', 'ObatController::updatePasien/$1', $filter);
 

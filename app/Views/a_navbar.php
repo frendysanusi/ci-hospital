@@ -17,7 +17,7 @@
                     <div class ="bg-black" class="h-8 w-12"></div>                        
                 </li>
                 <li>
-                    <a class="hover:text-blue-700" href="/admin/transactions">Recapitulations</a>
+                    <a class="hover:text-blue-700" href="/admin/recap">Recapitulations</a>
                     <div class ="bg-black" class="h-8 w-12"></div>                        
                 </li>
                 <li>
