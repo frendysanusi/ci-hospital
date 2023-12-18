@@ -27,4 +27,9 @@ class AdminController extends BaseController
     {
         return view('a_profile');
     }
+
+    public function recap(): string
+    {
+        return view('recap');
+    }
 }
