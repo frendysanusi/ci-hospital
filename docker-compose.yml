@@ -10,7 +10,7 @@ services:
     volumes:
       - ./:/var/www
     networks:
-      - pharmacy
+      - hospital
     
   # Web Server
   web:
@@ -24,7 +24,7 @@ services:
     ports:
       - "8081:80"
     networks:
-      - pharmacy
+      - hospital
 
   # Database
   database:
@@ -33,11 +33,12 @@ services:
       - ./docker/volumes/mysql:/var/lib/mysql
     environment:
       MYSQL_DATABASE: $${database.default.database}
-      MYSQL_ROOT_PASSWORD: $${database.default.password}
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
+      MYSQL_TCP_PORT: 3307
     ports:
-      - "3307:3306"
+      - "3307:3307"
     networks:
-      - pharmacy
+      - hospital
 
   npm:
     image: node:alpine
@@ -51,8 +52,8 @@ services:
     profiles: ["npm"]
     entrypoint: ['npm']
     networks:
-      - pharmacy
+      - hospital
 
 networks:
-  pharmacy:
-    name: "pharmacy-network"
+  hospital:
+    name: "hospital-network"
