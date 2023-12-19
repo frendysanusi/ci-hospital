@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\DataTransaksi;
 use App\Models\Kunjungan;
 use App\Models\Pasien;
 use App\Models\Dokter;
@@ -13,11 +14,13 @@ class KunjunganController extends BaseController
     protected $kunjungan;
     protected $pasiens;
     protected $dokters;
+    protected $transaksis;
 
     function __construct() {
         $this->kunjungan = new Kunjungan();
         $this->pasiens = new Pasien();
         $this->dokters = new Dokter();
+        $this->transaksis = new DataTransaksi();
     }
 
     public function index()
@@ -171,6 +174,9 @@ class KunjunganController extends BaseController
     }
 
     public function createVisit() {
+        $temp = $this->getKunjungan();
+        $id = end($temp)['id'] + 1;
+
         $tanggal = $_POST['tanggal'] . ' ' . $_POST['waktu'];
         $id_pasien = $_POST['id_pasien'];
         $id_dokter = $_POST['id_dokter'];
@@ -199,6 +205,19 @@ class KunjunganController extends BaseController
             return $this->response->setStatusCode(400)->setJSON($this->validator->getErrors());
         }
 
+        $biaya_apotek = 0;
+        $preskripsiArray = json_decode($preskripsi, true);
+        $idObatArray = array_column($preskripsiArray, 'id_obat');
+
+        foreach ($idObatArray as $idObat) {
+            $url = 'http://localhost:8080/api/obat/' . $idObat;
+            $client = \Config\Services::curlrequest();
+            $res = $client->request('GET', $url);
+            $body = $res->getBody();
+            $body = json_decode($body, true);
+            $biaya_apotek += $body['data']['harga'];
+        }
+
         try {
             $data = $this->kunjungan->insert([
                 'tanggal' => $tanggal,
@@ -207,6 +226,15 @@ class KunjunganController extends BaseController
                 'keluhan' => $keluhan,
                 'diagnosa' => $diagnosa,
                 'preskripsi' => $preskripsi,
+            ]);
+
+            $transaksi = $this->transaksis->insert([
+                'tanggal'       => $tanggal,
+                'biaya_rs'      => 100000,
+                'biaya_apotek'  => $biaya_apotek,
+                'status_rs'     => false,
+                'status_apotek' => false,
+                'id_kunjungan'  => $id
             ]);
     
             return redirect()->to('doctor/visits');
