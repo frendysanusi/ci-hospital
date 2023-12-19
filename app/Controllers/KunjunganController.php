@@ -32,11 +32,12 @@ class KunjunganController extends BaseController
                 $username = $payloadData[0]['username'];
 
                 $dokter = $this->dokters->where('username', $username)->first();
-                $id = $dokter['id'];
+                
             }
         }
 
-        if ($id) {
+        if ($dokter) {
+            $id = $dokter['id'];
             $res = $this->getKunjungan();
     
             $kunjunganArray = [];
@@ -57,25 +58,48 @@ class KunjunganController extends BaseController
                 $visits[] = $visit;
             }
             return view('d_visits', compact('visits'));
+        } else {
+            $this->response->deleteCookie('token');
+            session()->setFlashdata('success', 'Please Login with the Correct Account');
+            return redirect()->to('/')->withCookies('token', null);
         }
     }
 
     public function showNewVisits()
     {
-        $pasien = $this->pasiens->find();
-        $dokter = $this->dokters->find();
-        $kunjungan = $this->getKunjungan();
-        $kunjunganLastId = end($kunjungan)['id'];
-        
-        $client = \Config\Services::curlrequest();
-        $url = 'http://localhost:8080/api/obat';
-        $res = $client->request('GET', $url);
-        $body = $res->getBody();
-        $body = json_decode($body, true);
-    
-        $obat = $body['data'];
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $tokenData = explode('.', $token);
+            if (count($tokenData) === 3) {
+                $payload = base64_decode($tokenData[1]);
+                $payloadData = json_decode($payload, true);
 
-        return view('d_visit_a', compact('pasien', 'dokter', 'obat', 'kunjunganLastId'));
+                $username = $payloadData[0]['username'];
+
+                $dokter = $this->dokters->where('username', $username)->first();
+                
+            }
+            if ($dokter){
+                $pasien = $this->pasiens->find();
+                $dokter = $this->dokters->find();
+                $kunjungan = $this->getKunjungan();
+                $kunjunganLastId = end($kunjungan)['id'];
+                
+                $client = \Config\Services::curlrequest();
+                $url = 'http://localhost:8080/api/obat';
+                $res = $client->request('GET', $url);
+                $body = $res->getBody();
+                $body = json_decode($body, true);
+            
+                $obat = $body['data'];
+
+                return view('d_visit_a', compact('pasien', 'dokter', 'obat', 'kunjunganLastId'));
+            }
+        }
+        
+        $this->response->deleteCookie('token');
+        session()->setFlashdata('success', 'Please Login with the Correct Account');
+        return redirect()->to('/')->withCookies('token', null);
     }
 
     public function getKunjungan()
