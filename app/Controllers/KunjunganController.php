@@ -8,6 +8,7 @@ use App\Models\Kunjungan;
 use App\Models\Pasien;
 use App\Models\Dokter;
 use DateTime;
+use Firebase\JWT\JWT;
 
 class KunjunganController extends BaseController
 {
@@ -237,8 +238,25 @@ class KunjunganController extends BaseController
                 'id_kunjungan'  => $id
             ]);
 
+            $key = getenv('JWT_SECRET');
+            $iat = time();
+            $exp = $iat + 3600;
+
+            $payload = array([
+                'iss'      => 'localhost',
+                'iat'      => $iat,
+                'exp'      => $exp,
+                'username' => 'admin'
+            ]);
+
+            $token = JWT::encode($payload, $key, 'HS256');
+
             $url = 'http://localhost:8080/api/pesanan';
-            $res = $client->request('GET', $url);
+            $res = $client->request('GET', $url, [
+                'headers' => [
+                    'Cookie'    => "token=" . $token
+                    ]
+            ]);
             $body = $res->getBody();
             $body = json_decode($body, true);
             $id_pesanan = end($body['data'])['id_pesanan'] + 1;
@@ -256,7 +274,8 @@ class KunjunganController extends BaseController
                         'status_ambil'  => 0
                     ],
                     'headers' => [
-                        'Content-Type' => 'application/json'
+                        'Content-Type' => 'application/json',
+                        'Cookie'    => "token=" . $token
                         ]
                     ]);
                 }
