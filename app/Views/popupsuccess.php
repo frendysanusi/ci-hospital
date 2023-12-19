@@ -11,12 +11,12 @@
     function checkModalVisibility() {
         var successModal = document.getElementById("success");
             
-        // if (successModal.style.display !== 'none') {
-            // Reload the page
-            //setTimeout(function () {
-                //window.location.reload();
-            //}, 1000);
-        //}
+        if (successModal.style.display !== 'none') {
+            //Reload the page
+            setTimeout(function () {
+                window.location.reload();
+            }, 1000);
+        }
     }
 
     setInterval(checkModalVisibility, 1500);
