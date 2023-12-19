@@ -1,7 +1,7 @@
 <div id="deleteConfirmation" class="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-neutral-800/70" style="display: none;">
     <div class="bg-white h-72 w-[400px] rounded-2xl shadow-2xl">
-        <h1 class="text-[#EB1E11] text-xl font-bold font-poppins text-center mt-5">Delete Medicine</h1>
-        <h1 class="text-black mt-3 text-md font-bold font-poppins text-center">Are you sure to delete this medicine?</h1>
+        <h1 class="text-[#EB1E11] text-xl font-bold font-poppins text-center mt-5">Delete Patient</h1>
+        <h1 class="text-black mt-3 text-md font-bold font-poppins text-center">Are you sure to delete this patient?</h1>
         <div class="items-center justify-center m-auto">
             <img src="/popup/warning.png" alt="/popup/warning.png" class="mr-4 h-24 w-24 mt-2 items-center m-36">
         </div>
