@@ -3,12 +3,18 @@
 <body class="font-['Poppins'] bg-[#F5F5F5] h-screen">
     <?php include('d_navbar.php') ?>
 
+    <?php
+        $imageName = isset($recommendObat['nama']) ? $recommendObat['nama'] : 'medicine';
+        $imagePath = '/img/medicine/' . $imageName . '.png';
+        $image = file_exists($_SERVER['DOCUMENT_ROOT'] . $imagePath) ? $imagePath : '/img/medicine/medicine.png';
+    ?>
+
     <h1 class="text-3xl p-12 font-bold text-center text-[#005792]">Supplement Recommendations</h1>
 
     <div class="w-[40%]  mx-auto bg-[#EDF9FC] text-center p-12 border-2 border-[#005792] rounded-lg justify-center">
         <p class="text-center font-bold text-2xl text-[#005792]"><?php echo $recommendObat['nama'] ?></p>
         <div class="p-4">
-            <img class="m-auto" alt="med" src="/img/medicine.png"/>
+            <img class="m-auto h-36 w-36" alt="<?= $image ?>" src="<?= $image ?>"/>
         </div>
         <span>Based on the TST apothecary database, many patients are experiencing a </span><span class="text-[#005792]"><?php echo $recommendObat['nama'] ?></span><span> deficiency.</span>
     </div>
