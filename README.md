@@ -55,13 +55,19 @@ Sistem rumah sakit bertugas untuk melayani pembayaran untuk segala transaksi di 
 
 ## Tech Stack
 
+- PHP
 - Codeigniter 4
 - Tailwind CSS
 - MySQL
 - phpMyAdmin
 - Postman
 - Github dan Git
+- Docker
 - Visual Studio Code
+
+![Code-Igniter](https://img.shields.io/badge/CodeIgniter-%23EF4223.svg?style=for-the-badge&logo=codeIgniter&logoColor=white)
+
+[![My Skills](https://skillicons.dev/icons?i=php,tailwind,mysql,postman,github,git,docker,vscode)](https://skillicons.dev)
 
 ## How to run
 
@@ -114,6 +120,7 @@ make setup
 
 
 ## Deployment
+
 Deployment dilakukan menggunakan Docker dalam bentuk container
 
 ## Features
