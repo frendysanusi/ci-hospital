@@ -16,8 +16,25 @@ class DataTransaksiController extends BaseController
 
     public function index()
     {
-        $data['transactions'] = $this->getDataTransaksi(false);
-        return view('a_transactions', $data);
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $tokenData = explode('.', $token);
+            if (count($tokenData) === 3) {
+                $payload = base64_decode($tokenData[1]);
+                $payloadData = json_decode($payload, true);
+
+                $username = $payloadData[0]['username'];
+                
+            }
+            if ($username == 'admin'){
+                $data['transactions'] = $this->getDataTransaksi(false);
+                return view('a_transactions', $data);
+            }
+        }
+        $this->response->deleteCookie('token');
+        session()->setFlashdata('success', 'Please Login with the Correct Account');
+        return redirect()->to('/')->withCookies('token', null);
+        
     }
 
     public function getDataTransaksi($returnJSON = true)

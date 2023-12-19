@@ -15,20 +15,70 @@ class PasienController extends BaseController
 
     public function index()
     {
-        $data['patients'] = $this->getPasien(false);
-        return view('a_patients', $data);
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $tokenData = explode('.', $token);
+            if (count($tokenData) === 3) {
+                $payload = base64_decode($tokenData[1]);
+                $payloadData = json_decode($payload, true);
+
+                $username = $payloadData[0]['username'];
+                
+            }
+            if ($username == 'admin'){
+                $data['patients'] = $this->getPasien(false);
+                return view('a_patients', $data);
+            }
+        }
+        $this->response->deleteCookie('token');
+        session()->setFlashdata('success', 'Please Login with the Correct Account');
+        return redirect()->to('/')->withCookies('token', null);
     }
 
     public function editForm($id)
     {
-        $data['patient'] = $this->getPasienById($id, false);
-        return view('editpasien', $data);
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $tokenData = explode('.', $token);
+            if (count($tokenData) === 3) {
+                $payload = base64_decode($tokenData[1]);
+                $payloadData = json_decode($payload, true);
+
+                $username = $payloadData[0]['username'];
+                
+            }
+            if ($username == 'admin'){
+                $data['patient'] = $this->getPasienById($id, false);
+                return view('editpasien', $data);
+            }
+        }
+        $this->response->deleteCookie('token');
+        session()->setFlashdata('success', 'Please Login with the Correct Account');
+        return redirect()->to('/')->withCookies('token', null);
+        
     }
 
     public function deleteForm($id)
     {
-        $data['patient'] = $this->delete($id, false);
-        return view('deletepasien', $data);
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $tokenData = explode('.', $token);
+            if (count($tokenData) === 3) {
+                $payload = base64_decode($tokenData[1]);
+                $payloadData = json_decode($payload, true);
+
+                $username = $payloadData[0]['username'];
+                
+            }
+            if ($username == 'admin'){
+                $data['patient'] = $this->delete($id, false);
+                return view('deletepasien', $data);
+            }
+        }
+        $this->response->deleteCookie('token');
+        session()->setFlashdata('success', 'Please Login with the Correct Account');
+        return redirect()->to('/')->withCookies('token', null);
+        
     }
 
     public function getPasien()
