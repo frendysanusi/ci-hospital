@@ -26,9 +26,15 @@ class DokterController extends BaseController
 
                 $dokter = $this->dokters->where('username', $username)->first();
             }
+            if ($dokter){
+                return view('d_profile', compact('dokter'));
+            }
         }
+        $this->response->deleteCookie('token');
+        session()->setFlashdata('success', 'Please Login with the Correct Account');
+        return redirect()->to('/')->withCookies('token', null);
 
-        return view('d_profile', compact('dokter'));
+
     }
 
     public function getDokter()

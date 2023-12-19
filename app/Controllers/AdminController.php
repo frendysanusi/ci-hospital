@@ -5,31 +5,25 @@ namespace App\Controllers;
 
 class AdminController extends BaseController
 {
-    public function index(): string
+  
+    public function recap() 
     {
-        return view('a_home');
-    }
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $tokenData = explode('.', $token);
+            if (count($tokenData) === 3) {
+                $payload = base64_decode($tokenData[1]);
+                $payloadData = json_decode($payload, true);
 
-    public function patients(): string
-    {
-
-        return view('a_patients');
-    }
-    public function patientsid(): string
-    {
-        return view('a_patients_id');
-    }
-    public function transactions(): string
-    {
-        return view('a_transactions');
-    }
-    public function profile(): string
-    {
-        return view('a_profile');
-    }
-
-    public function recap(): string
-    {
-        return view('recap');
+                $username = $payloadData[0]['username'];
+                
+            }
+            if ($username == 'admin'){
+                return view('recap');
+            }
+        }
+        $this->response->deleteCookie('token');
+        session()->setFlashdata('success', 'Please Login with the Correct Account');
+        return redirect()->to('/')->withCookies('token', null);
     }
 }
