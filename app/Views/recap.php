@@ -33,6 +33,8 @@
             </div>
         </div>
     </div>
+    
+    <?php include('popupsuccess.php') ?>
     <?php include('footer.php') ?>
 </body>
 
@@ -40,11 +42,16 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/enc-base64-min.js"></script>
 
 <script>
+    var success = document.getElementById("success");
+
     document.getElementById("saveButton").addEventListener("click", function (event) {
         event.preventDefault();
         var dropdown = document.getElementById("transactionDropdown");
         var month = dropdown.value;
         sendRecap(month);
+        setTimeout(function () {
+            success.removeAttribute("style");
+        }, 1500);
     });
 
     function sendRecap(month) {
