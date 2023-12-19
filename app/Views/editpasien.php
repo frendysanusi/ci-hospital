@@ -5,7 +5,7 @@
                 <img src="/img/close.png" alt="/img/close.png" class="mr-4 h-6 w-6 mt-3">
             </button>
         </div>
-        <h1 class="text-[#005792] text-lg font-bold font-poppins text-center">Add Patient</h1>
+        <h1 class="text-[#005792] text-lg font-bold font-poppins text-center">Input Patient Data</h1>
 
         <form action="" method="post">
             <div class="flex">
