@@ -36,13 +36,44 @@
 
         document.getElementById("save").addEventListener("click", function (event) {
             event.preventDefault();
-            var id = editModal.getAttribute("data-id");
-            editPasien(id);
+            var id = editModal.getAttribute("data-id") ?? null;
+            var httpmethod = editModal.getAttribute("httpmethod");
+            
+            if (httpmethod == "PUT") {
+                editPasien(id);
+            }
+            else if (httpmethod == "POST") {
+                addPasien();
+            }
         })
 
         function editPasien(id) {
             fetch("/api/pasien/" + id, {
                 method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    "nama": document.getElementsByName("namapasien")[0].value,
+                    "tanggal_lahir": document.getElementsByName("tanggallahir")[0].value,
+                    "alamat": document.getElementsByName("alamat")[0].value 
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                setTimeout(function () {
+                    window.location.reload();
+                }, 500);
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+        }
+
+        function addPasien() {
+            fetch("/api/pasien", {
+                method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },

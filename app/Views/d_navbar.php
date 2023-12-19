@@ -17,9 +17,9 @@
                     <a class="hover:text-blue-700" href="/doctor/profile">Profile</a>
                 </li>
                 <li>
-                    <button
+                    <a href="/logout"
                         class="bg-[#005792] hover:bg-[#005792] text-white text-md font-semibold font-poppins py-1 px-8 rounded-lg ">Log
-                        Out</button>
+                        Out</a>
                 </li>
             </ul>
             <div>

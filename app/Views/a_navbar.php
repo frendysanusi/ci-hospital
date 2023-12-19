@@ -17,14 +17,14 @@
                     <div class ="bg-black" class="h-8 w-12"></div>                        
                 </li>
                 <li>
-                    <a class="hover:text-blue-700" href="/admin/transactions">Recapitulations</a>
+                    <a class="hover:text-blue-700" href="/admin/recap">Recapitulations</a>
                     <div class ="bg-black" class="h-8 w-12"></div>                        
                 </li>
                 <li>
                     <a class="hover:text-blue-700" href="/admin/profile">Profile</a>            
                 </li>
                 <li>
-                    <button class="bg-[#005792] hover:bg-[#033f67] text-white text-md font-semibold font-poppins py-1 px-8 rounded-lg ">Log Out</button>
+                    <a href="/logout" class="bg-[#005792] hover:bg-[#033f67] text-white text-md font-semibold font-poppins py-1 px-8 rounded-lg ">Log Out</a>
                 </li>
             </ul>
             <div>

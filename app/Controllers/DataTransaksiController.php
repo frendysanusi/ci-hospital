@@ -144,17 +144,19 @@ class DataTransaksiController extends BaseController
         }
     }
 
-    public function recapTransaksi() {
+    public function recapTransaksi($month) {
         try {
             $res = $this->dataTransaksi->findAll();
 
-            $sumTransaksi = [];
+            $sumTransaksi = 0;
             if (!empty($res)) {
                 foreach ($res as $transaksi) {
                     $dateObject = new DateTime($transaksi['tanggal']);
-                    $month = intval($dateObject->format('m'));
+                    $transaksiMonth = intval($dateObject->format('m'));
 
-                    $sumTransaksi[$month] = ($sumTransaksi[$month] ?? 0) + $transaksi['biaya_apotek'];
+                    if ($transaksiMonth == $month && $transaksi['status_apotek'] == 1) {
+                        $sumTransaksi += $transaksi['biaya_apotek'];
+                    }
                 }
             }
 

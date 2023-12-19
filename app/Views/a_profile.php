@@ -13,8 +13,7 @@
             <div class="items-center flex">
                 <div>
                     <h1 class="font-bold p-4 text-[#005792]">Role: Admin</h1>
-                    <p class="p-4">Nama: Admin A</p>
-                    <p class="p-4">ID: -</p>
+                    <p class="p-4">Anda sedang login sebagai Admin Rumah Sakit</p>
                 </div>
             </div>
         </div>

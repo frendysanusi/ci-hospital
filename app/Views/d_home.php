@@ -6,11 +6,11 @@
     <h1 class="text-3xl p-12 font-bold text-center text-[#005792]">Supplement Recommendations</h1>
 
     <div class="w-[40%]  mx-auto bg-[#EDF9FC] text-center p-12 border-2 border-[#005792] rounded-lg justify-center">
-        <p class="text-center font-bold text-2xl text-[#005792]">Vitamin C</p>
+        <p class="text-center font-bold text-2xl text-[#005792]"><?php echo $recommendObat['nama'] ?></p>
         <div class="p-4">
             <img class="m-auto" alt="med" src="/img/medicine.png"/>
         </div>
-        <span>Based on the TST apothecary database, many patients are experiencing a </span><span class="text-[#005792]">Vitamin C</span><span> deficiency.</span>
+        <span>Based on the TST apothecary database, many patients are experiencing a </span><span class="text-[#005792]"><?php echo $recommendObat['nama'] ?></span><span> deficiency.</span>
     </div>
     <div class="flex flex-row mx-auto mt-24 mb-48">
         <div class=" h-2">

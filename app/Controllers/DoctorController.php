@@ -2,8 +2,16 @@
 
 namespace App\Controllers;
 
+use App\Models\Dokter;
+
 class DoctorController extends BaseController
 {
+    protected $dokters;
+
+    function __construct() {
+        $this->dokters = new Dokter();
+    }
+
     public function index(): string
     {
         return view('d_home');
@@ -18,6 +26,6 @@ class DoctorController extends BaseController
     }
     public function profile(): string
     {
-        return view('d_profile');
+        return view('d_profile', compact('dokter'));
     }
 }
