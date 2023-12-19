@@ -27,7 +27,7 @@
                             class="border-2 border-[#005792] px-4 flex w-[90%] text-xs text-start placeholder-gray-500 my-2 bg-neutral-100 py-2 rounded-md">
                             <option value="" data-name="">Select</option>
                             <?php foreach ($pasien as $p): ?>
-                                <option value="<?= $p['id'] ?>"><?= $p['id'] ?></option>
+                                <option value="<?= $p['id'] ?>" data-name="<?= $p['nama'] ?>" ><?= $p['id'] ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -36,7 +36,7 @@
                         <span class=" flex font-semibold text-neutral-700 text-sm ">Doctor ID</span>
                         <select name="id_dokter" id="doctorDropdown" type="select" placeholder="Select ID..."
                             class="border-2 border-[#005792] px-4 flex w-[90%] text-xs text-start placeholder-gray-500 my-2 bg-neutral-100 py-2 rounded-md">
-                            <option value="<?= $user['id'] ?>" data-name="<?= $user['nama'] ?>" ><?= $user['id'] ?></option>
+                            <option value="<?= $user['id'] ?>"><?= $user['id'] ?></option>
                         </select>
                     </div>
                     <div class="my-2">

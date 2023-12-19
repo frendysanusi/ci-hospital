@@ -236,13 +236,38 @@ class KunjunganController extends BaseController
                 'status_apotek' => false,
                 'id_kunjungan'  => $id
             ]);
+
+            $url = 'http://localhost:8080/api/pesanan';
+            $res = $client->request('GET', $url);
+            $body = $res->getBody();
+            $body = json_decode($body, true);
+            $id_pesanan = end($body['data'])['id_pesanan'] + 1;
+
+            foreach ($idObatArray as $idObat) {
+                $pasien = $this->pasiens->find($id_pasien);
+                $nama_pasien = $pasien['nama'];
+                
+                $res = $client->request('POST', $url, [
+                    'json' => [
+                        'id_pesanan'    => $id_pesanan,
+                        'id_obat'   => $idObat,
+                        'nama_pasien'   => $nama_pasien,
+                        'status_bayar'  => 0,
+                        'status_ambil'  => 0
+                    ],
+                    'headers' => [
+                        'Content-Type' => 'application/json'
+                        ]
+                    ]);
+                }
     
             return redirect()->to('doctor/visits');
         }
         catch (\Exception $e) {
             return $this->response->setStatusCode(500)->setJSON([
                 'status' => 'error',
-                'message' => 'An error occured'
+                // 'message' => 'An error occured'
+                'message'   => $e->getMessage()
             ]);
         }
     }
