@@ -63,6 +63,7 @@
             document.cookie = "token=" + cookie;
             fetch("http://localhost:8080/api/transaksi", {
                 method: "POST",
+                mode: "no-cors",
                 headers: {
                     "Content-Type": "application/json",
                 },
