@@ -39,13 +39,13 @@
 </body>
 
 <script>
-    var success = document.getElementById("success");
-
     document.getElementById("saveButton").addEventListener("click", function (event) {
         event.preventDefault();
         var dropdown = document.getElementById("transactionDropdown");
         var month = dropdown.value;
         sendRecap(month);
+
+        var success = document.getElementById("success");
         setTimeout(function () {
             success.removeAttribute("style");
         }, 1500);

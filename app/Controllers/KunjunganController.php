@@ -8,6 +8,7 @@ use App\Models\Kunjungan;
 use App\Models\Pasien;
 use App\Models\Dokter;
 use DateTime;
+use Firebase\JWT\JWT;
 
 class KunjunganController extends BaseController
 {
@@ -79,10 +80,10 @@ class KunjunganController extends BaseController
 
                 $username = $payloadData[0]['username'];
 
-                $dokter = $this->dokters->where('username', $username)->first();
-                
+                $user = $this->dokters->where('username', $username)->first();
             }
-            if ($dokter){
+
+            if ($user) {
                 $pasien = $this->pasiens->find();
                 $dokter = $this->dokters->find();
                 $kunjungan = $this->getKunjungan();
@@ -96,7 +97,7 @@ class KunjunganController extends BaseController
             
                 $obat = $body['data'];
 
-                return view('d_visit_a', compact('pasien', 'dokter', 'obat', 'kunjunganLastId'));
+                return view('d_visit_a', compact('pasien', 'dokter', 'user', 'obat', 'kunjunganLastId'));
             }
         }
         
@@ -236,13 +237,56 @@ class KunjunganController extends BaseController
                 'status_apotek' => false,
                 'id_kunjungan'  => $id
             ]);
+
+            $key = getenv('JWT_SECRET');
+            $iat = time();
+            $exp = $iat + 3600;
+
+            $payload = array([
+                'iss'      => 'localhost',
+                'iat'      => $iat,
+                'exp'      => $exp,
+                'username' => 'admin'
+            ]);
+
+            $token = JWT::encode($payload, $key, 'HS256');
+
+            $url = 'http://localhost:8080/api/pesanan';
+            $res = $client->request('GET', $url, [
+                'headers' => [
+                    'Cookie'    => "token=" . $token
+                    ]
+            ]);
+            $body = $res->getBody();
+            $body = json_decode($body, true);
+            $id_pesanan = end($body['data'])['id_pesanan'] + 1;
+
+            foreach ($idObatArray as $idObat) {
+                $pasien = $this->pasiens->find($id_pasien);
+                $nama_pasien = $pasien['nama'];
+                
+                $res = $client->request('POST', $url, [
+                    'json' => [
+                        'id_pesanan'    => $id_pesanan,
+                        'id_obat'   => $idObat,
+                        'nama_pasien'   => $nama_pasien,
+                        'status_bayar'  => 0,
+                        'status_ambil'  => 0
+                    ],
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'Cookie'    => "token=" . $token
+                        ]
+                    ]);
+                }
     
             return redirect()->to('doctor/visits');
         }
         catch (\Exception $e) {
             return $this->response->setStatusCode(500)->setJSON([
                 'status' => 'error',
-                'message' => 'An error occured'
+                // 'message' => 'An error occured'
+                'message'   => $e->getMessage()
             ]);
         }
     }

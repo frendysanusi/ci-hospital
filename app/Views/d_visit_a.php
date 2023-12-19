@@ -36,10 +36,7 @@
                         <span class=" flex font-semibold text-neutral-700 text-sm ">Doctor ID</span>
                         <select name="id_dokter" id="doctorDropdown" type="select" placeholder="Select ID..."
                             class="border-2 border-[#005792] px-4 flex w-[90%] text-xs text-start placeholder-gray-500 my-2 bg-neutral-100 py-2 rounded-md">
-                            <option value="" data-name="">Select</option>
-                            <?php foreach ($dokter as $d): ?>
-                                <option value="<?= $d['id'] ?>" data-name="<?= $d['nama'] ?>" ><?= $d['id'] ?></option>
-                            <?php endforeach; ?>
+                            <option value="<?= $user['id'] ?>"><?= $user['id'] ?></option>
                         </select>
                     </div>
                     <div class="my-2">
@@ -55,7 +52,7 @@
                         <span class=" flex font-semibold text-neutral-700 text-sm ">Doctor Name</span>
                         <p
                             id="selectedDoctorName" class="border-2 border-[#005792] px-4 flex w-[90%] text-xs text-start my-2 bg-neutral-100 py-2 rounded-md h-9">
-                            
+                            <?= $user['nama'] ?>
                         </p>
                     </div>
                 </div>
@@ -102,11 +99,6 @@
         $('#patientDropdown').change(function() {
             var selectedName = $('#patientDropdown option:selected').data('name');
             $('#selectedPatientName').text(selectedName);
-        });
-
-        $('#doctorDropdown').change(function() {
-            var selectedName = $('#doctorDropdown option:selected').data('name');
-            $('#selectedDoctorName').text(selectedName);
         });
     });
 </script>

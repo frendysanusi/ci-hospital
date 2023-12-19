@@ -56,11 +56,16 @@ Sistem rumah sakit bertugas untuk melayani pembayaran untuk segala transaksi di 
 ## Tech Stack
 
 - Codeigniter 4
-- MySQLdb
+- Tailwind CSS
+- MySQL
+- phpMyAdmin
+- Postman
 - Github dan Git
 - Visual Studio Code
 
 ## How to run
+
+### By local
 
 1. Clone respository ini
 
@@ -84,7 +89,6 @@ php spark db:seed DataSeeder
 5. Jalankan aplikasi menggunakan command berikut dalam dua terminal berbeda
 ```
 php spark serve --port 8081
-npx tailwindcss -i ./public/css/input.css -o ./public/css/styles.css --watch
 ```
 6. Service berjalan pada http://localhost:8081 pada browser Anda
 
@@ -99,11 +103,22 @@ username: dokter_a
 password: password
 ```
 
+### By Docker
+
+1. Jalankan command berikut.
+```
+make setup
+```
+
+2. Service berjalan pada http://localhost:8081 pada browser Anda
+
+
 ## Deployment
+Deployment dilakukan menggunakan Docker dalam bentuk container
 
 ## Features
 
-1. **Login** - melakukan validasi dan autorisasi pengguna. terdapat 2 role dalam sistem ini, yaitu dokter yang bertugas mengisi catatan kunjungan, dan admin yang bertugas mendaftarkan pasien, mengkonfirmasi pembayaran, dan mengirim informasi rekapitulasi masukan uang ke sistem apotek.
+1. **Login** - melakukan validasi dan autorisasi pengguna. Terdapat 2 role dalam sistem ini, yaitu dokter yang bertugas mengisi catatan kunjungan, dan admin yang bertugas mendaftarkan pasien, mengonfirmasi pembayaran, dan mengirim informasi rekapitulasi masukan uang ke sistem apotek.
 
 2. **View Supplement Recommendations** - dokter dapat melihat rekomendasi suplemen tiap bulan yang diberikan sistem apotek untuk mendapatkan informasi kebutuhan vitamin para pasien dalam satu bulan terakhir.
 
@@ -119,6 +134,6 @@ password: password
    
 
 ## Documentation
-[https://docs.google.com/document/d/11VVUq3s6EbKkoQnYY_Sl7ymabZufGoWuneDM68WyuzY/edit?usp=sharing](Documentation)
+[Documentation](https://docs.google.com/document/d/11VVUq3s6EbKkoQnYY_Sl7ymabZufGoWuneDM68WyuzY/edit?usp=sharing)
 
 *Development processes and interfaces are provided in the document.*
