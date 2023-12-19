@@ -13,18 +13,19 @@ $routes->get('/logout', 'Login::logout');
 
 
 $routes->group('doctor', function ($routes) {
+    $filter = ['filter' => 'authFilter'];
     $routes->get('visits', 'KunjunganController::index');
     $routes->get('visitsForm', 'KunjunganController::showNewVisits');
     $routes->post('visitsForm', 'KunjunganController::createVisit');
     $routes->get('visits/(:id)', 'KunjunganController::index/$1');
     $routes->put('visits/(:id)', 'KunjunganController::update/$1');
     $routes->get('profile', 'DokterController::index');
-    $routes->get('', 'LandDokterController::index');
+    $routes->get('', 'LandDokterController::index', $filter);
 });
 
 $routes->group('admin', function ($routes) {
     $filter = ['filter' => 'authFilter'];
-    $routes->get('', 'LandAdminController::index');
+    $routes->get('', 'LandAdminController::index', $filter);
     $routes->get('profile', 'ProfilController::index');
     $routes->get('patients', 'PasienController::index');
     $routes->post('patients/edit', 'PasienController::createPasien');

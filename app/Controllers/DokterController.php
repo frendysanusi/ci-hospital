@@ -7,22 +7,34 @@ use App\Models\Dokter;
 
 class DokterController extends BaseController
 {
-    protected $dokter;
+    protected $dokters;
 
     function __construct() {
-        $this->dokter = new Dokter();
+        $this->dokters = new Dokter();
     }
 
     public function index()
     {
-        $data['profile'] = $this->getDokter(false);
-        return view('d_profile', $data);
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $tokenData = explode('.', $token);
+            if (count($tokenData) === 3) {
+                $payload = base64_decode($tokenData[1]);
+                $payloadData = json_decode($payload, true);
+
+                $username = $payloadData[0]['username'];
+
+                $dokter = $this->dokters->where('username', $username)->first();
+            }
+        }
+
+        return view('d_profile', compact('dokter'));
     }
 
     public function getDokter()
     {
         try {
-            $data = $this->dokter->findAll();
+            $data = $this->dokters->findAll();
             return $data;
         }
         catch (\Exception $e) {
@@ -32,7 +44,7 @@ class DokterController extends BaseController
 
     public function getDokterById($id)
     {
-        $data = $this->dokter->find($id);
+        $data = $this->dokters->find($id);
         if (empty($data)) {
             return null;
         }
