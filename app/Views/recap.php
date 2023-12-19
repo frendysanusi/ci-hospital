@@ -38,9 +38,6 @@
     <?php include('footer.php') ?>
 </body>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/hmac-sha256.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/enc-base64-min.js"></script>
-
 <script>
     var success = document.getElementById("success");
 
@@ -55,8 +52,6 @@
     });
 
     function sendRecap(month) {
-        var cookie = createCookie('token');
-        console.log(cookie);
 
         var res = fetch("/api/recapTransaksi/" + month, {
             method: "GET",
@@ -67,14 +62,12 @@
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            document.cookie = "token=" + cookie;
             fetch("http://localhost:8080/api/transaksi", {
                 method: "POST",
                 mode: "no-cors",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                credentials: "include",
                 body: JSON.stringify({
                     "bulan": month,
                     "total_biaya": data.data
@@ -93,41 +86,4 @@
         });
     }
 
-    function createCookie(name) {
-        function base64url(source) {
-            encodedSource = CryptoJS.enc.Base64.stringify(source);
-            encodedSource = encodedSource.replace(/=+$/, '');
-            encodedSource = encodedSource.replace(/\+/g, '-');
-            encodedSource = encodedSource.replace(/\//g, '_');
-            return encodedSource;
-        }
-
-        function createJWT(header, data, secret = undefined) {
-            let stringifiedHeader = CryptoJS.enc.Utf8.parse(JSON.stringify(header));
-            let encodedHeader = base64url(stringifiedHeader);
-            let stringifiedData = CryptoJS.enc.Utf8.parse(JSON.stringify(data));
-            let encodedData = base64url(stringifiedData);
-            let token = encodedHeader + "." + encodedData;
-            if (!secret) return token;
-            let signature = CryptoJS.HmacSHA256(token, secret);
-            signature = base64url(signature);
-            return encodedHeader + "." + encodedData + "." + signature;
-        }
-
-        const header = {
-            "alg": "HS256",
-            "typ": "JWT"
-        };
-        const data = {
-            "iss": "localhost",
-            "iat": Math.floor(Date.now() / 1000),
-            "exp": Math.floor(Date.now() / 1000) + 3600,
-            "username": "admin",
-        };
-        const secret = "a4ec52e469cb86ca0462514206b035c39959a6f02cabc541257747eee79bf7a2";
-
-        const token = createJWT(header, data, secret);
-
-        return token;
-    }
 </script>
