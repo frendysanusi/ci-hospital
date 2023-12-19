@@ -79,10 +79,10 @@ class KunjunganController extends BaseController
 
                 $username = $payloadData[0]['username'];
 
-                $dokter = $this->dokters->where('username', $username)->first();
-                
+                $user = $this->dokters->where('username', $username)->first();
             }
-            if ($dokter){
+
+            if ($user) {
                 $pasien = $this->pasiens->find();
                 $dokter = $this->dokters->find();
                 $kunjungan = $this->getKunjungan();
@@ -96,7 +96,7 @@ class KunjunganController extends BaseController
             
                 $obat = $body['data'];
 
-                return view('d_visit_a', compact('pasien', 'dokter', 'obat', 'kunjunganLastId'));
+                return view('d_visit_a', compact('pasien', 'dokter', 'user', 'obat', 'kunjunganLastId'));
             }
         }
         
